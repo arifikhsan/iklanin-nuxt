@@ -40,6 +40,7 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/moment',
   ],
   /*
    ** Nuxt.js modules
@@ -99,5 +100,9 @@ export default {
         // autoFetchUser: true
       },
     },
+  },
+  moment: {
+    defaultLocale: 'id',
+    locales: ['id'],
   },
 }

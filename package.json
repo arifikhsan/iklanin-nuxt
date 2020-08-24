@@ -22,6 +22,7 @@
     "nuxt-webfontloader": "^1.1.0"
   },
   "devDependencies": {
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/tailwindcss": "^3.0.0",
     "@tailwindcss/custom-forms": "^0.2.1",
     "eslint-config-prettier": "^6.11.0",
