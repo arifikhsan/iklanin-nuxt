@@ -4,14 +4,22 @@
       <h1 class="text-3xl font-bold text-grey-800">
         {{ ad.title }}
       </h1>
-      <div class="py-4">
-        <p class="font-medium text-red-500 text-xl">Rp. {{ ad.price }}</p>
+      <div class="py-2">
+        <p class="text-red-400 font-medium">Harga</p>
+        <p class="mt-2">Rp. {{ ad.price }}</p>
       </div>
-      <p class="py-4">{{ ad.detail }}</p>
+      <div class="py-2">
+        <p class="text-red-400 font-medium">Deksripsi</p>
+        <p class="mt-2">{{ ad.detail }}</p>
+      </div>
+      <div class="py-2">
+        <p class="text-red-400 font-medium">Kategori</p>
+        <p class="mt-2">{{ ad.category.name }}</p>
+      </div>
     </div>
-    <div class="py-4">
-      <div v-if="ad.user">
-        <p class="font-medium text-red-400">Hubungi kontak berikut:</p>
+    <div class="py-2">
+      <div>
+        <p class="font-medium text-red-400">Hubungi kontak berikut</p>
         <p>Nama: {{ ad.user.name }}</p>
         <p>Email: {{ ad.user.email }}</p>
       </div>
@@ -38,7 +46,10 @@ export default {
   },
   data() {
     return {
-      ad: '',
+      ad: {
+        user: {},
+        category: {},
+      },
       slug: this.$route.params.slug,
     }
   },
@@ -56,6 +67,9 @@ export default {
             price
             title
             detail
+            category {
+              name
+            }
             user {
               name
               email
