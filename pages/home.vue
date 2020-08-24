@@ -2,10 +2,14 @@
   <div>
     <div class="py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex flex-col space-y-4">
-        <div class="p-2 border border-red-200 hover:border-red-400 duration-500 rounded-md" v-for="ad in allAds" :key="ad.id">
+        <div
+          class="p-2 border border-red-200 group hover:border-red-400 duration-500 rounded-md"
+          v-for="ad in allAds"
+          :key="ad.id"
+        >
           <nuxt-link
             :to="{ name: 'iklan-slug', params: { slug: ad.slug } }"
-            class="text-xl font-medium leading-snug text-red-500 hover:text-red-600"
+            class="text-xl font-medium leading-snug text-red-500 group-hover:text-red-600"
           >
             {{ ad.title }}
           </nuxt-link>
