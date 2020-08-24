@@ -13,6 +13,7 @@
           v-model="ad.title"
           class="block w-full mt-1 form-input"
           placeholder="Judul iklan"
+          required
         />
       </label>
       <label class="block mt-3">
@@ -22,21 +23,23 @@
           v-model="ad.price"
           class="block w-full mt-1 form-input"
           placeholder="20000"
+          required
         />
       </label>
       <label class="block mt-3">
         <span class="text-gray-700">Pilih Kategori</span>
         <select
           v-model="ad.categoryIds"
-          class="form-multiselect block w-full mt-1"
-          multiple
+          class="form-select block w-full mt-1"
+          required
         >
           <option
             v-for="category in categories"
             :value="category.id"
             :key="category.id"
-            >{{ category.name }}</option
           >
+            {{ category.name }}
+          </option>
         </select>
       </label>
       <label class="block mt-3">
@@ -44,7 +47,7 @@
         <textarea
           v-model="ad.detail"
           class="block w-full mt-1 form-textarea"
-          rows="3"
+          rows="6"
           placeholder="Tulis deskripsi"
           required
         ></textarea>
@@ -126,14 +129,14 @@ export default {
           variables: {
             title: this.ad.title,
             detail: this.ad.detail,
-            category_ids: this.ad.categoryIds,
+            category_id: this.ad.categoryIds,
             price: parseInt(this.ad.price),
             time_start: this.$moment(this.ad.timeStart).toISOString(),
             time_end: this.$moment(this.ad.timeEnd).toISOString(),
           },
           mutation: gql`
             mutation(
-              $category_ids: [Int!]!
+              $category_id: Int!
               $title: String!
               $price: Int!
               $detail: String!
@@ -142,7 +145,7 @@ export default {
             ) {
               createAd(
                 input: {
-                  categoryIds: $category_ids
+                  categoryId: $category_id
                   title: $title
                   price: $price
                   detail: $detail
