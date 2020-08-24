@@ -39,13 +39,14 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/tailwindcss',
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     'nuxt-webfontloader',
     '@nuxtjs/apollo',
     '@nuxtjs/auth',
