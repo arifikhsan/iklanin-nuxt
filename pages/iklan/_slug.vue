@@ -11,7 +11,7 @@
     </div>
     <div class="py-4">
       <div v-if="ad.user">
-        <p class="font-medium">Hubungi kontak berikut:</p>
+        <p class="font-medium text-red-400">Hubungi kontak berikut:</p>
         <p>Nama: {{ ad.user.name }}</p>
         <p>Email: {{ ad.user.email }}</p>
       </div>

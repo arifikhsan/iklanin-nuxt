@@ -108,10 +108,6 @@ export default {
       categories: {},
     }
   },
-  created() {
-    console.log(this.$moment().format('YYYY-MM-DDTHH:mm'))
-    console.log(this.$moment().toISOString())
-  },
   apollo: {
     categories: gql`
       query {
@@ -125,8 +121,6 @@ export default {
   },
   methods: {
     sendAd() {
-      console.log(this.ad)
-      console.log(this.$moment(this.ad.timeStart).toISOString())
       this.$apollo
         .mutate({
           variables: {
