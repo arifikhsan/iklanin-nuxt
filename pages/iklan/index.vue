@@ -58,6 +58,7 @@
           type="datetime-local"
           v-model="ad.timeStart"
           class="block w-full mt-1 form-input"
+          required
         />
       </label>
       <label class="block mt-3">
@@ -66,23 +67,26 @@
           type="datetime-local"
           v-model="ad.timeEnd"
           class="block w-full mt-1 form-input"
+          required
         />
       </label>
-      <div v-if="!done" class="mt-4">
-        <button
-          class="block w-full px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
-          type="submit"
-        >
-          Kirim
-        </button>
-      </div>
-      <div v-else class="mt-4">
-        <nuxt-link
-          class="block w-full px-4 py-2 mt-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
-          :to="{ name: 'iklan-slug', params: { slug: slug } }"
-        >
-          <a>Lihat iklan</a>
-        </nuxt-link>
+      <div class="mt-6">
+        <div v-if="!done">
+          <button
+            class="block w-full px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
+            type="submit"
+          >
+            Kirim
+          </button>
+        </div>
+        <div v-else>
+          <nuxt-link
+            class="block w-full px-4 py-2 mt-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
+            :to="{ name: 'iklan-slug', params: { slug: slug } }"
+          >
+            <a>Lihat iklan</a>
+          </nuxt-link>
+        </div>
       </div>
     </form>
   </div>

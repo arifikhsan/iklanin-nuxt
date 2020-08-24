@@ -11,6 +11,7 @@
           v-model="ad.title"
           class="block w-full mt-1 form-input"
           placeholder="Judul iklan"
+          required
         />
       </label>
       <label class="block mt-3">
@@ -20,14 +21,15 @@
           v-model="ad.price"
           class="block w-full mt-1 form-input"
           placeholder="20000"
+          required
         />
       </label>
       <label class="block mt-3">
         <span class="text-gray-700">Pilih Kategori</span>
         <select
-          v-model="ad.categoryIds"
-          class="form-multiselect block w-full mt-1"
-          multiple
+          v-model="ad.category.id"
+          class="form-select block w-full mt-1"
+          required
         >
           <option
             v-for="category in categories"
@@ -51,34 +53,37 @@
         <span class="text-gray-700">Tanggal mulai terbit</span>
         <input
           type="datetime-local"
-          :value="$moment(ad.timeStart).format('YYYY-MM-DDTHH:mm')"
-          @change="changeTimeStart"
+          v-model="newTimeStart"
           class="block w-full mt-1 form-input"
+          required
         />
       </label>
       <label class="block mt-3">
         <span class="text-gray-700">Tanggal selesai terbit</span>
         <input
           type="datetime-local"
-          :value="$moment(ad.timeEnd).format('YYYY-MM-DDTHH:mm')"
+          v-model="newTimeEnd"
           class="block w-full mt-1 form-input"
+          required
         />
       </label>
-      <div class="mt-4">
-        <button
-          class="block w-full px-4 py-2 text-center text-white duration-500 bg-blue-500 rounded-md hover:bg-blue-600"
-          type="submit"
-        >
-          Update
-        </button>
-      </div>
-      <div v-if="done">
-        <nuxt-link
-          class="block w-full px-4 py-2 mt-2 text-center text-white duration-500 bg-blue-500 rounded-md hover:bg-blue-600"
-          :to="{ name: 'barang-slug', params: { slug: newslug } }"
-        >
-          <a>Lihat barang</a>
-        </nuxt-link>
+      <div class="mt-6">
+        <div v-if="!done">
+          <button
+            class="block w-full px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
+            type="submit"
+          >
+            Update
+          </button>
+        </div>
+        <div v-else>
+          <nuxt-link
+            class="block w-full px-4 py-2 mt-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
+            :to="{ name: 'iklan-slug', params: { slug: newslug } }"
+          >
+            <a>Lihat Iklan</a>
+          </nuxt-link>
+        </div>
       </div>
     </form>
   </div>
@@ -94,11 +99,31 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      ad: {},
+      ad: {
+        category: {},
+      },
       categories: {},
       done: false,
       newslug: '',
     }
+  },
+  computed: {
+    newTimeStart: {
+      get() {
+        return this.$moment(this.ad.timeStart).format('YYYY-MM-DDTHH:mm')
+      },
+      set(val) {
+        this.ad.timeStart = val
+      },
+    },
+    newTimeEnd: {
+      get() {
+        return this.$moment(this.ad.timeEnd).format('YYYY-MM-DDTHH:mm')
+      },
+      set(val) {
+        this.ad.timeEnd = val
+      },
+    },
   },
   apollo: {
     ad: {
@@ -116,6 +141,9 @@ export default {
             detail
             timeStart
             timeEnd
+            category {
+              id
+            }
           }
         }
       `,
@@ -133,44 +161,44 @@ export default {
   created() {
     console.log(this.ad)
     console.log(this.$moment(this.ad.timeStart).format('YYYY-MM-DDTHH:mm'))
-    // this.getProduct()
   },
   methods: {
-    changeTimeStart(e) {
-      console.log(e)
-    },
-    async getProduct() {
-      const slug = this.$route.params.slug
-      const product = await this.$apollo.mutate({
-        variables: {
-          slug,
-        },
-        mutation: gql`
-          mutation($slug: String!) {
-            getProduct(input: { slug: $slug }) {
-              product {
-                id
-                name
-                detail
-              }
-            }
-          }
-        `,
-      })
-      const result = product.data.getProduct.product
-      this.product = result
-    },
     updateAd() {
+      console.log(this.ad.timeStart)
+      console.log(this.$moment(this.ad.timeStart).toISOString())
+
       this.$apollo
         .mutate({
           variables: {
             slug: this.$route.params.slug,
-            name: this.product.name,
-            detail: this.product.detail,
+            title: this.ad.title,
+            detail: this.ad.detail,
+            category_id: this.ad.category.id,
+            price: parseInt(this.ad.price),
+            time_start: this.$moment(this.ad.timeStart).toISOString(),
+            time_end: this.$moment(this.ad.timeEnd).toISOString(),
           },
           mutation: gql`
-            mutation($slug: String!, $name: String!, $detail: String!) {
-              updateAd(input: { slug: $slug, name: $name, detail: $detail }) {
+            mutation(
+              $slug: String!
+              $category_id: Int!
+              $title: String!
+              $price: Int!
+              $detail: String!
+              $time_start: ISO8601DateTime!
+              $time_end: ISO8601DateTime!
+            ) {
+              updateAd(
+                input: {
+                  slug: $slug
+                  categoryId: $category_id
+                  title: $title
+                  price: $price
+                  detail: $detail
+                  timeStart: $time_start
+                  timeEnd: $time_end
+                }
+              ) {
                 message
                 slug
               }
@@ -178,14 +206,15 @@ export default {
           `,
         })
         .then((res) => {
-          this.$toast.success('Sukses mengupdate barang.', {
+          this.$toast.success('Sukses mengupdate iklan.', {
             duration: 6000,
           })
           this.newslug = res.data.updateAd.slug
           this.done = true
         })
-        .catch(() => {
-          this.$toast.error('Gagal mengupdate barang.', {
+        .catch((err) => {
+          console.log(err)
+          this.$toast.error('Gagal mengupdate iklan.', {
             duration: 6000,
           })
         })
