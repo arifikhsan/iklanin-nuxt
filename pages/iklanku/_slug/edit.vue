@@ -158,15 +158,8 @@ export default {
       }
     `,
   },
-  created() {
-    console.log(this.ad)
-    console.log(this.$moment(this.ad.timeStart).format('YYYY-MM-DDTHH:mm'))
-  },
   methods: {
     updateAd() {
-      console.log(this.ad.timeStart)
-      console.log(this.$moment(this.ad.timeStart).toISOString())
-
       this.$apollo
         .mutate({
           variables: {
@@ -213,7 +206,6 @@ export default {
           this.done = true
         })
         .catch((err) => {
-          console.log(err)
           this.$toast.error('Gagal mengupdate iklan.', {
             duration: 6000,
           })
