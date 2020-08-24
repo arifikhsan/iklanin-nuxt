@@ -1,7 +1,7 @@
 {
   "name": "iklanin-nuxt",
   "version": "1.0.0",
-  "description": "My wicked Nuxt.js project",
+  "description": "Situs iklan baris gratis.",
   "author": "Arif Ikhsanudin",
   "private": true,
   "scripts": {
