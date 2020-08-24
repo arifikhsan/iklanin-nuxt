@@ -6,7 +6,7 @@
       >
         <!-- hero -->
         <div
-          class="max-w-screen-xl mx-auto my-20 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
+          class="max-w-screen-xl px-4 mx-auto my-20 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
         >
           <div class="sm:text-center lg:text-left">
             <h2
@@ -41,7 +41,7 @@
                   target="_blank"
                   class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-red-700 transition duration-150 ease-in-out bg-red-100 border border-transparent rounded-md hover:text-red-600 hover:bg-red-50 focus:outline-none focus:shadow-outline focus:border-red-300 md:py-4 md:text-lg md:px-10"
                 >
-                  Grup Telegram
+                  Gabung grup Whatsapp
                 </a>
               </div>
             </div>
@@ -50,7 +50,7 @@
         <!-- end hero -->
         <!-- start feature -->
         <div class="py-12 bg-white">
-          <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+          <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
             <div class="lg:text-center">
               <p
                 class="text-base font-semibold leading-6 tracking-wide text-red-600 uppercase"
@@ -65,8 +65,7 @@
               <p
                 class="max-w-2xl mt-4 text-xl leading-7 text-gray-500 lg:mx-auto"
               >
-                Deserunt eiusmod labore pariatur eiusmod consectetur irure non
-                nisi duis labore et aute.
+                Solusi mudah jual cepat.
               </p>
             </div>
 
@@ -98,7 +97,7 @@
                         Akses global
                       </h4>
                       <p class="mt-2 text-base leading-6 text-gray-500">
-                        Exercitation nisi sit minim mollit.
+                        Iklan bisa dilihat oleh banyak orang (segera).
                       </p>
                     </div>
                   </div>
@@ -129,8 +128,7 @@
                         Gratis
                       </h4>
                       <p class="mt-2 text-base leading-6 text-gray-500">
-                        Nisi do reprehenderit reprehenderit excepteur est
-                        eiusmod sit aliquip elit consequat officia.
+                        Pasang iklan gratis tanpa biaya.
                       </p>
                     </div>
                   </div>
@@ -161,8 +159,7 @@
                         Cepat laku
                       </h4>
                       <p class="mt-2 text-base leading-6 text-gray-500">
-                        Ad magna est ullamco Lorem aliqua nulla dolore ea magna
-                        nisi ad sint in ea.
+                        Temukan peminat iklan Anda dengan cepat (segera).
                       </p>
                     </div>
                   </div>
@@ -193,8 +190,8 @@
                         Komunitas aktif
                       </h4>
                       <p class="mt-2 text-base leading-6 text-gray-500">
-                        Gabung grup telegram untuk mengetahui apa yang terjadi
-                        di belakang layar.
+                        Gabung grup whatsapp untuk mengetahui tentang apa yang
+                        terjadi di belakang layar.
                       </p>
                     </div>
                   </div>
@@ -207,7 +204,7 @@
         <!-- start cta -->
         <div class="bg-gray-50">
           <div
-            class="max-w-screen-xl py-12 mx-auto sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between"
+            class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between"
           >
             <h2
               class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
@@ -231,7 +228,7 @@
                   target="_blank"
                   class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-red-600 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-red-500 focus:outline-none focus:shadow-outline"
                 >
-                  Grup Telegram
+                  Gabung grup Whatsapp
                 </a>
               </div>
             </div>
@@ -248,12 +245,12 @@ export default {
   name: 'landing',
   layout: 'landing',
   head: {
-    title: 'Iklan baris gratis.',
+    title: 'Situs iklan baris gratis.',
   },
   data() {
     return {
       menu: false,
-      groupLink: 'https://t.me/joinchat/Hu0t6BzWXRxxTuq6SGB0AQ',
+      groupLink: 'https://chat.whatsapp.com/HK6MxHQL81A5FDGfFacpqN',
     }
   },
   mounted() {

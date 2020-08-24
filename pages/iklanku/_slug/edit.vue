@@ -94,7 +94,7 @@ import gql from 'graphql-tag'
 
 export default {
   head: {
-    title: 'Edit barang',
+    title: 'Edit iklan',
   },
   middleware: 'auth',
   data() {

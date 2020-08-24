@@ -37,7 +37,7 @@ import gql from 'graphql-tag'
 
 export default {
   head: {
-    title: 'Barangku',
+    title: 'Iklanku',
   },
   middleware: 'auth',
   data() {
