@@ -41,7 +41,7 @@
                   target="_blank"
                   class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-red-700 transition duration-150 ease-in-out bg-red-100 border border-transparent rounded-md hover:text-red-600 hover:bg-red-50 focus:outline-none focus:shadow-outline focus:border-red-300 md:py-4 md:text-lg md:px-10"
                 >
-                  Gabung grup Whatsapp
+                  Gabung grup WhatsApp
                 </a>
               </div>
             </div>
@@ -190,7 +190,7 @@
                         Komunitas aktif
                       </h4>
                       <p class="mt-2 text-base leading-6 text-gray-500">
-                        Gabung grup whatsapp untuk mengetahui tentang apa yang
+                        Gabung grup WhatsApp untuk mengetahui tentang apa yang
                         terjadi di belakang layar.
                       </p>
                     </div>
@@ -228,7 +228,7 @@
                   target="_blank"
                   class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-red-600 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-red-500 focus:outline-none focus:shadow-outline"
                 >
-                  Gabung grup Whatsapp
+                  Gabung grup WhatsApp
                 </a>
               </div>
             </div>
