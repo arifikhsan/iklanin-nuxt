@@ -16,6 +16,58 @@
           required
         />
       </label>
+      <div class="mt-3">
+        <p class="text-gray-700">Gambar <span class="text-red-500">*</span></p>
+        <label class="block">
+          <input
+            type="file"
+            class="block w-full mt-1 form-input"
+            placeholder="Judul iklan"
+            accept="image/*"
+            @change="onFileChange"
+            multiple
+            required
+          />
+        </label>
+        <p class="mt-1 text-sm italic text-gray-600">
+          Dimensi gambar yang direkomendasikan 1080 x 1080. Ukuran maksimal 2MB
+          tiap gambar.
+        </p>
+        <div v-if="ad.images.length != 0">
+          <div class="flex flex-wrap mt-3">
+            <div
+              v-for="(image, index) in ad.images"
+              :key="image.name"
+              class="m-2"
+            >
+              <img
+                class="object-cover w-32 h-32 border"
+                :src="image.image_display"
+              />
+              <div class="mt-2">
+                <label class="inline-flex items-center">
+                  <input
+                    type="radio"
+                    class="text-red-500 form-radio"
+                    name="radio"
+                    :value="index"
+                    @change="selectedCoverChange(index)"
+                    :checked="index == 0"
+                  />
+                  <span class="ml-2">Sampul</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="px-4 py-2 mt-3 text-sm border rounded"
+            @click="ad.images = []"
+          >
+            Hapus semua gambar
+          </button>
+        </div>
+      </div>
       <label class="block mt-3">
         <span class="text-gray-700">Harga</span>
         <input
@@ -29,8 +81,8 @@
       <label class="block mt-3">
         <span class="text-gray-700">Pilih Kategori</span>
         <select
-          v-model="ad.categoryIds"
-          class="form-select block w-full mt-1"
+          v-model="ad.categoryId"
+          class="block w-full mt-1 form-select"
           required
         >
           <option
@@ -103,10 +155,11 @@ export default {
   data() {
     return {
       ad: {
-        title: '',
-        detail: '',
-        categoryIds: [],
-        price: '',
+        title: 'aa',
+        images: [],
+        detail: 'aa',
+        categoryId: 1,
+        price: '123',
         timeStart: this.$moment().format('YYYY-MM-DDTHH:mm'),
         timeEnd: this.$moment().add(10, 'days').format('YYYY-MM-DDTHH:mm'),
       },
@@ -127,56 +180,110 @@ export default {
     `,
   },
   methods: {
+    onFileChange(e) {
+      const files = [...e.target.files]
+      console.log(files)
+      files.map((file) => {
+        this.ad.images.push({
+          name: file.name,
+          image: file,
+          image_display: URL.createObjectURL(file),
+          cover: false,
+        })
+      })
+      if (this.ad.images.length == 1) {
+        this.ad.images[0].cover = true
+      }
+      console.log(this.ad.images)
+    },
+    selectedCoverChange(selectedIndex) {
+      console.log(selectedIndex)
+      this.ad.images.forEach((image, index) => {
+        image.cover = index == selectedIndex
+      })
+      console.log(this.ad.images)
+    },
     sendAd() {
+      console.log(this.ad.images)
       this.$apollo
         .mutate({
           variables: {
-            title: this.ad.title,
-            detail: this.ad.detail,
-            category_id: this.ad.categoryIds,
-            price: parseInt(this.ad.price),
-            time_start: this.$moment(this.ad.timeStart).toISOString(),
-            time_end: this.$moment(this.ad.timeEnd).toISOString(),
+            ad_id: 1,
+            // name: this.ad.images[0].name,
+            image: this.ad.images[0].image,
+            cover: this.ad.images[0].cover,
           },
           mutation: gql`
             mutation(
-              $category_id: Int!
-              $title: String!
-              $price: Int!
-              $detail: String!
-              $time_start: ISO8601DateTime!
-              $time_end: ISO8601DateTime!
+              $ad_id: Int!
+              # $name: String!
+              $image: [Upload!]!
+              $cover: Boolean!
             ) {
-              createAd(
+              createAdImages(
                 input: {
-                  categoryId: $category_id
-                  title: $title
-                  price: $price
-                  detail: $detail
-                  timeStart: $time_start
-                  timeEnd: $time_end
+                  adId: $ad_id
+                  # name: $name
+                  image: $image
+                  cover: $cover
                 }
               ) {
                 message
-                slug
               }
             }
           `,
         })
-        .then((res) => {
-          this.$toast.success('Sukses membuat iklan.', {
-            duration: 6000,
-          })
-          this.slug = res.data.createAd.slug
-          this.done = true
-          this.ad.title = ''
-          this.ad.detail = ''
-        })
-        .catch(() => {
-          this.$toast.error('Gagal membuat iklan.', {
-            duration: 6000,
-          })
-        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+      this.$apollo
+      //   .mutate({
+      //     variables: {
+      //       title: this.ad.title,
+      //       detail: this.ad.detail,
+      //       category_id: this.ad.categoryIds,
+      //       price: parseInt(this.ad.price),
+      //       time_start: this.$moment(this.ad.timeStart).toISOString(),
+      //       time_end: this.$moment(this.ad.timeEnd).toISOString(),
+      //     },
+      //     mutation: gql`
+      //       mutation(
+      //         $category_id: Int!
+      //         $title: String!
+      //         $price: Int!
+      //         $detail: String!
+      //         $time_start: ISO8601DateTime!
+      //         $time_end: ISO8601DateTime!
+      //       ) {
+      //         createAd(
+      //           input: {
+      //             categoryId: $category_id
+      //             title: $title
+      //             price: $price
+      //             detail: $detail
+      //             timeStart: $time_start
+      //             timeEnd: $time_end
+      //           }
+      //         ) {
+      //           message
+      //           slug
+      //         }
+      //       }
+      //     `,
+      //   })
+      //   .then((res) => {
+      //     this.$toast.success('Sukses membuat iklan.', {
+      //       duration: 6000,
+      //     })
+      //     this.slug = res.data.createAd.slug
+      //     this.done = true
+      //     this.ad.title = ''
+      //     this.ad.detail = ''
+      //   })
+      //   .catch(() => {
+      //     this.$toast.error('Gagal membuat iklan.', {
+      //       duration: 6000,
+      //     })
+      //   })
     },
   },
 }
