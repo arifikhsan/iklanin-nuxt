@@ -205,37 +205,37 @@ export default {
     },
     sendAd() {
       console.log(this.ad.images)
-      this.$apollo
-        .mutate({
-          variables: {
-            ad_id: 1,
-            // name: this.ad.images[0].name,
-            image: this.ad.images[0].image,
-            cover: this.ad.images[0].cover,
-          },
-          mutation: gql`
-            mutation(
-              $ad_id: Int!
-              # $name: String!
-              $image: [Upload!]!
-              $cover: Boolean!
-            ) {
-              createAdImages(
-                input: {
-                  adId: $ad_id
-                  # name: $name
-                  image: $image
-                  cover: $cover
-                }
-              ) {
-                message
-              }
-            }
-          `,
-        })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err))
-      this.$apollo
+      // this.$apollo
+      //   .mutate({
+      //     variables: {
+      //       ad_id: 1,
+      //       // name: this.ad.images[0].name,
+      //       image: this.ad.images[0].image,
+      //       cover: this.ad.images[0].cover,
+      //     },
+      //     mutation: gql`
+      //       mutation(
+      //         $ad_id: Int!
+      //         # $name: String!
+      //         $image: [Upload!]!
+      //         $cover: Boolean!
+      //       ) {
+      //         createAdImages(
+      //           input: {
+      //             adId: $ad_id
+      //             # name: $name
+      //             image: $image
+      //             cover: $cover
+      //           }
+      //         ) {
+      //           message
+      //         }
+      //       }
+      //     `,
+      //   })
+      //   .then((res) => console.log(res))
+      //   .catch((err) => console.log(err))
+      // this.$apollo
       //   .mutate({
       //     variables: {
       //       title: this.ad.title,
