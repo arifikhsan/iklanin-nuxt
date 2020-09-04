@@ -182,7 +182,6 @@ export default {
   methods: {
     onFileChange(e) {
       const files = [...e.target.files]
-      // console.log(files)
       files.map((file) => {
         this.ad.images.push({
           name: file.name,
@@ -192,40 +191,13 @@ export default {
         })
       })
       this.ad.images[0].cover = true
-      // console.log(this.ad.images.filter((i) => i.cover))
     },
     selectedCoverChange(selectedIndex) {
-      // console.log(selectedIndex)
       this.ad.images.forEach((image, index) => {
         image.cover = index == selectedIndex
       })
-      // console.log(this.ad.images)
     },
     sendAd() {
-      // console.log(this.ad.images)
-      // console.log(
-      //   this.ad.images.map(({ name, image_display, ...keep }) => keep)
-      // )
-      // this.$apollo
-      //   .mutate({
-      //     variables: {
-      //       ad_id: 1,
-      //       images: this.ad.images.map(
-      //         ({ name, image_display, ...keep }) => keep
-      //       ),
-      //     },
-      //     mutation: gql`
-      //       mutation($ad_id: Int!, $images: [AdImageInput!]!) {
-      //         createAdImages(input: { adId: $ad_id, images: $images }) {
-      //           message
-      //         }
-      //       }
-      //     `,
-      //   })
-      //   .then((res) => console.log(res))
-      //   .catch((err) => console.log(err))
-
-
       this.$apollo
         .mutate({
           variables: {
