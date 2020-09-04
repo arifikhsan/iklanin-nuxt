@@ -13,7 +13,7 @@
               class="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl"
             >
               <span>
-                Situs iklan baris
+                Situs iklan baris Staging
               </span>
               <span class="text-red-600">gratis</span>
             </h2>
