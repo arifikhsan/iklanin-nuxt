@@ -182,7 +182,7 @@ export default {
   methods: {
     onFileChange(e) {
       const files = [...e.target.files]
-      console.log(files)
+      // console.log(files)
       files.map((file) => {
         this.ad.images.push({
           name: file.name,
@@ -191,43 +191,32 @@ export default {
           cover: false,
         })
       })
-      if (this.ad.images.length == 1) {
-        this.ad.images[0].cover = true
-      }
-      console.log(this.ad.images)
+      this.ad.images[0].cover = true
+      // console.log(this.ad.images.filter((i) => i.cover))
     },
     selectedCoverChange(selectedIndex) {
-      console.log(selectedIndex)
+      // console.log(selectedIndex)
       this.ad.images.forEach((image, index) => {
         image.cover = index == selectedIndex
       })
-      console.log(this.ad.images)
+      // console.log(this.ad.images)
     },
     sendAd() {
-      console.log(this.ad.images)
+      // console.log(this.ad.images)
+      // console.log(
+      //   this.ad.images.map(({ name, image_display, ...keep }) => keep)
+      // )
       // this.$apollo
       //   .mutate({
       //     variables: {
       //       ad_id: 1,
-      //       // name: this.ad.images[0].name,
-      //       image: this.ad.images[0].image,
-      //       cover: this.ad.images[0].cover,
+      //       images: this.ad.images.map(
+      //         ({ name, image_display, ...keep }) => keep
+      //       ),
       //     },
       //     mutation: gql`
-      //       mutation(
-      //         $ad_id: Int!
-      //         # $name: String!
-      //         $image: [Upload!]!
-      //         $cover: Boolean!
-      //       ) {
-      //         createAdImages(
-      //           input: {
-      //             adId: $ad_id
-      //             # name: $name
-      //             image: $image
-      //             cover: $cover
-      //           }
-      //         ) {
+      //       mutation($ad_id: Int!, $images: [AdImageInput!]!) {
+      //         createAdImages(input: { adId: $ad_id, images: $images }) {
       //           message
       //         }
       //       }
@@ -235,55 +224,62 @@ export default {
       //   })
       //   .then((res) => console.log(res))
       //   .catch((err) => console.log(err))
-      // this.$apollo
-      //   .mutate({
-      //     variables: {
-      //       title: this.ad.title,
-      //       detail: this.ad.detail,
-      //       category_id: this.ad.categoryIds,
-      //       price: parseInt(this.ad.price),
-      //       time_start: this.$moment(this.ad.timeStart).toISOString(),
-      //       time_end: this.$moment(this.ad.timeEnd).toISOString(),
-      //     },
-      //     mutation: gql`
-      //       mutation(
-      //         $category_id: Int!
-      //         $title: String!
-      //         $price: Int!
-      //         $detail: String!
-      //         $time_start: ISO8601DateTime!
-      //         $time_end: ISO8601DateTime!
-      //       ) {
-      //         createAd(
-      //           input: {
-      //             categoryId: $category_id
-      //             title: $title
-      //             price: $price
-      //             detail: $detail
-      //             timeStart: $time_start
-      //             timeEnd: $time_end
-      //           }
-      //         ) {
-      //           message
-      //           slug
-      //         }
-      //       }
-      //     `,
-      //   })
-      //   .then((res) => {
-      //     this.$toast.success('Sukses membuat iklan.', {
-      //       duration: 6000,
-      //     })
-      //     this.slug = res.data.createAd.slug
-      //     this.done = true
-      //     this.ad.title = ''
-      //     this.ad.detail = ''
-      //   })
-      //   .catch(() => {
-      //     this.$toast.error('Gagal membuat iklan.', {
-      //       duration: 6000,
-      //     })
-      //   })
+
+
+      this.$apollo
+        .mutate({
+          variables: {
+            title: this.ad.title,
+            detail: this.ad.detail,
+            category_id: this.ad.categoryId,
+            price: parseInt(this.ad.price),
+            time_start: this.$moment(this.ad.timeStart).toISOString(),
+            time_end: this.$moment(this.ad.timeEnd).toISOString(),
+            images: this.ad.images.map(
+              ({ name, image_display, ...keep }) => keep
+            ),
+          },
+          mutation: gql`
+            mutation(
+              $category_id: Int!
+              $title: String!
+              $price: Int!
+              $detail: String!
+              $time_start: ISO8601DateTime!
+              $time_end: ISO8601DateTime!
+              $images: [AdImageInput!]!
+             ) {
+               createAd(
+                 input: {
+                   categoryId: $category_id
+                   title: $title
+                   price: $price
+                   detail: $detail
+                   timeStart: $time_start
+                   timeEnd: $time_end
+                   images: $images
+                 }
+               ) {
+                 message
+                 slug
+               }
+             }
+           `,
+         })
+         .then((res) => {
+           this.$toast.success('Sukses membuat iklan.', {
+             duration: 6000,
+           })
+           this.slug = res.data.createAd.slug
+           this.done = true
+           this.ad.title = ''
+           this.ad.detail = ''
+         })
+         .catch(() => {
+           this.$toast.error('Gagal membuat iklan.', {
+             duration: 6000,
+           })
+         })
     },
   },
 }
