@@ -5,15 +5,15 @@
         {{ ad.title }}
       </h1>
       <div class="py-2">
-        <p class="text-red-400 font-medium">Harga</p>
+        <p class="font-medium text-red-400">Harga</p>
         <p class="mt-2">Rp. {{ ad.price }}</p>
       </div>
       <div class="py-2">
-        <p class="text-red-400 font-medium">Deksripsi</p>
+        <p class="font-medium text-red-400">Deksripsi</p>
         <p class="mt-2">{{ ad.detail }}</p>
       </div>
       <div class="py-2">
-        <p class="text-red-400 font-medium">Kategori</p>
+        <p class="font-medium text-red-400">Kategori</p>
         <p class="mt-2">{{ ad.category.name }}</p>
       </div>
     </div>
@@ -42,6 +42,13 @@ export default {
   head() {
     return {
       title: this.ad.title || 'Detail iklan',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Detail Nuxt.js ',
+        },
+      ],
     }
   },
   data() {
