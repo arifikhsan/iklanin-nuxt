@@ -1,25 +1,35 @@
 <template>
   <div>
     <div>
-      <h1 class="text-3xl font-bold text-grey-800">
+      <div>
+        <img class="object-cover w-full h-64 rounded-md" :src="ad.cover_image.url.medium" />
+      </div>
+      <h1 class="py-2 text-3xl font-bold text-grey-800">
         {{ ad.title }}
       </h1>
       <div class="py-2">
-        <p class="font-medium text-red-400">Harga</p>
-        <p class="mt-2">Rp. {{ ad.price }}</p>
+        <p class="font-medium text-red-500">Harga</p>
+        <p class="mt-2">
+          {{
+            ad.price.toLocaleString('id', {
+              style: 'currency',
+              currency: 'IDR',
+            })
+          }}
+        </p>
       </div>
       <div class="py-2">
-        <p class="font-medium text-red-400">Deksripsi</p>
+        <p class="font-medium text-red-500">Deksripsi</p>
         <p class="mt-2">{{ ad.detail }}</p>
       </div>
       <div class="py-2">
-        <p class="font-medium text-red-400">Kategori</p>
+        <p class="font-medium text-red-500">Kategori</p>
         <p class="mt-2">{{ ad.category.name }}</p>
       </div>
     </div>
     <div class="py-2">
       <div>
-        <p class="font-medium text-red-400">Hubungi kontak berikut</p>
+        <p class="font-medium text-red-500">Hubungi kontak berikut</p>
         <p>Nama: {{ ad.user.name }}</p>
         <p>Email: {{ ad.user.email }}</p>
       </div>
@@ -36,8 +46,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-
 export default {
   head() {
     return {
@@ -51,40 +59,15 @@ export default {
       ],
     }
   },
+  async asyncData({ $axios, route }) {
+    const response = await $axios.$get('/v1/ads/' + route.params.slug)
+    return { ad: response.data }
+  },
   data() {
     return {
-      ad: {
-        user: {},
-        category: {},
-      },
+      ad: '',
       slug: this.$route.params.slug,
     }
-  },
-  apollo: {
-    ad: {
-      variables() {
-        return {
-          slug: this.$route.params.slug,
-        }
-      },
-      query: gql`
-        query($slug: String!) {
-          ad: findAd(slug: $slug) {
-            id
-            price
-            title
-            detail
-            category {
-              name
-            }
-            user {
-              name
-              email
-            }
-          }
-        }
-      `,
-    },
   },
 }
 </script>
