@@ -5,9 +5,20 @@
  ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 module.exports = {
-  theme: {},
+  theme: {
+    truncate: {
+      lines: {
+        2: '2',
+        3: '3',
+        8: '8',
+      },
+    },
+  },
   variants: {},
-  plugins: [require('@tailwindcss/custom-forms')],
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+    require('tailwindcss-truncate-multiline')(),
+  ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
@@ -16,7 +27,7 @@ module.exports = {
       'layouts/**/*.vue',
       'pages/**/*.vue',
       'plugins/**/*.js',
-      'nuxt.config.js'
-    ]
-  }
+      'nuxt.config.js',
+    ],
+  },
 }

@@ -15,15 +15,20 @@
               <nuxt-link
                 :to="{ name: 'iklan-slug', params: { slug: ad.slug } }"
               >
-                <div class="w-full h-32 bg-red-400 rounded-md"></div>
+                <img class="object-cover w-full h-32 rounded-md" :src="ad.cover_image_url" />
                 <div class="p-2">
                   <div
-                    class="text-xl font-medium leading-snug text-red-500 group-hover:text-red-600"
+                    class="overflow-hidden text-xl font-medium leading-snug text-red-500 truncate group-hover:text-red-600"
                   >
-                    Rp. {{ ad.price }}
+                    {{
+                      ad.price.toLocaleString('id', {
+                        style: 'currency',
+                        currency: 'IDR',
+                      })
+                    }}
                   </div>
                   <div class="mt-1">
-                    <p class="font-medium">
+                    <p class="truncate-2-lines">
                       {{ ad.title }}
                     </p>
                     <p class="mt-1 text-xs">
@@ -41,8 +46,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-
 export default {
   head: {
     title: 'Iklan Terbaru',
@@ -53,9 +56,13 @@ export default {
   },
   data() {
     return {
-      allAds: '',
       ads: '',
     }
+  },
+  computed: {
+    formatMoney(value) {
+      return value.toLocaleString('id', { style: 'currency', currency: 'IDR' })
+    },
   },
 }
 </script>

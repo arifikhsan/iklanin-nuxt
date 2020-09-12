@@ -20,7 +20,8 @@
     "apollo-upload-client": "^14.1.1",
     "graphql-tag": "^2.11.0",
     "nuxt": "^2.14.3",
-    "nuxt-webfontloader": "^1.1.0"
+    "nuxt-webfontloader": "^1.1.0",
+    "tailwindcss-truncate-multiline": "^1.0.3"
   },
   "devDependencies": {
     "@nuxtjs/moment": "^1.6.1",
