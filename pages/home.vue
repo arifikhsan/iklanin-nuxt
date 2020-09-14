@@ -1,11 +1,15 @@
 <template>
   <div>
     <client-only>
-      <div class="sm:px-6 lg:px-8">
+      <div class="sm:px-4">
         <div class="mt-4">
           <h1 class="text-3xl font-bold text-red-500">Terbaru</h1>
           <div class="flex flex-wrap mt-4">
+            <div v-if="ads.data.length === 0" class="w-full py-4 text-center">
+              <p>Tidak ada iklan yang ditemukan.</p>
+            </div>
             <div
+              v-else
               class="flex flex-col justify-start w-1/2 my-2 duration-500 sm:w-1/3 md:w-1/4"
               v-for="ad in ads.data"
               :key="ad.id"
@@ -45,7 +49,7 @@
             </div>
           </div>
           <div
-            class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
+            class="flex items-center justify-between py-3 mt-6 bg-white border-t border-gray-200"
           >
             <div class="flex justify-between flex-1 sm:hidden">
               <nuxt-link
@@ -59,7 +63,7 @@
                 Previous
               </nuxt-link>
               <nuxt-link
-                v-if="!ads.pagination.is_last_page"
+                v-if="!ads.pagination.is_last_page && ads.data.length !== 0"
                 :to="{
                   name: 'home',
                   query: { page: ads.pagination.next_page },
@@ -109,7 +113,7 @@
                     </svg>
                   </nuxt-link>
                   <nuxt-link
-                    v-if="!ads.pagination.is_last_page"
+                    v-if="!ads.pagination.is_last_page && ads.data.length !== 0"
                     :to="{
                       name: 'home',
                       query: { page: ads.pagination.next_page },
