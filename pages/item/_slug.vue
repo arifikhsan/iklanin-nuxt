@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-      <div class="md:w-1/2">
+      <div class="mt-4 md:mt-0 md:w-1/2">
         <h1 class="py-2 text-3xl font-bold text-grey-800">
           {{ ad.title }}
         </h1>
