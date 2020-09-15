@@ -15,7 +15,7 @@
               :key="ad.id"
             >
               <div
-                class="p-2 rounded-md hover:shadow-md hover:border group hover:border-red-400"
+                class="p-2 transition duration-500 ease-in-out rounded-md hover:shadow-md hover:border group hover:border-red-400"
               >
                 <nuxt-link
                   :to="{ name: 'iklan-slug', params: { slug: ad.slug } }"
@@ -36,7 +36,7 @@
                       }}
                     </div>
                     <div class="mt-1">
-                      <p class="truncate-2-lines">
+                      <p class="truncate-3-lines">
                         {{ ad.title }}
                       </p>
                       <p class="mt-1 text-xs">
