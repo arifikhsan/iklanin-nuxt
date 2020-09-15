@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <div>
-      <div class="font-sans text-gray-800">
+      <div class="text-gray-800 font-body">
         <nuxt />
       </div>
     </div>

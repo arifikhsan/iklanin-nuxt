@@ -9,6 +9,9 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
   },
   theme: {
+    fontFamily: {
+      'body': ['Open Sans']
+    },
     truncate: {
       lines: {
         2: '2',
