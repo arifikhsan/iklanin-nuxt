@@ -79,12 +79,11 @@ export default {
   },
   async asyncData({ $axios, route }) {
     const response = await $axios.$get('/v1/ads/' + route.params.slug)
-    console.log(response)
     return { ad: response.data }
   },
   data() {
     return {
-      ad: '',
+      ad: {},
       slug: this.$route.params.slug,
     }
   },

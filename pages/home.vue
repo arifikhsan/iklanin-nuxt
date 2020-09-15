@@ -18,7 +18,7 @@
                 class="p-2 transition duration-500 ease-in-out rounded-md hover:shadow-md hover:border group hover:border-red-400"
               >
                 <nuxt-link
-                  :to="{ name: 'iklan-slug', params: { slug: ad.slug } }"
+                  :to="{ name: 'item-slug', params: { slug: ad.slug } }"
                 >
                   <img
                     class="object-cover w-full h-32 rounded-md"
@@ -166,7 +166,6 @@ export default {
     const pageNumber =
       Object.keys(route.query).length === 0 ? 1 : route.query.page
     const url = `/v1/ads?page=${pageNumber}`
-    console.log(url)
 
     const ads = await $axios.$get(url)
     return { ads }
