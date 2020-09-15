@@ -73,7 +73,7 @@
       <div class="rounded-lg shadow-md">
         <div
           @click="toggleNav"
-          class="overflow-hidden bg-white rounded-lg shadow-xs"
+          class="overflow-hidden bg-white rounded-b-lg shadow-xs"
         >
           <div class="flex items-center justify-between p-4">
             <div class="text-2xl font-bold text-red-500">
