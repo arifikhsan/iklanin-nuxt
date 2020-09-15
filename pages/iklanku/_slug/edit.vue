@@ -79,7 +79,7 @@
         <div v-else>
           <nuxt-link
             class="block w-full px-4 py-2 mt-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
-            :to="{ name: 'iklan-slug', params: { slug: newslug } }"
+            :to="{ name: 'item-slug', params: { slug: newslug } }"
           >
             <a>Lihat Iklan</a>
           </nuxt-link>

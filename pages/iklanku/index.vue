@@ -7,7 +7,7 @@
       <div v-for="product in myAds" :key="product.id">
         <div>
           <nuxt-link
-            :to="{ name: 'iklan-slug', params: { slug: product.slug } }"
+            :to="{ name: 'item-slug', params: { slug: product.slug } }"
             class="block py-2 text-xl font-semibold duration-500 hover:text-red-500"
           >
             {{ product.title }}
