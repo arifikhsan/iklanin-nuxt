@@ -62,6 +62,7 @@
               >
                 Previous
               </nuxt-link>
+              <div v-else></div>
               <nuxt-link
                 v-if="!ads.pagination.is_last_page && ads.data.length !== 0"
                 :to="{
@@ -72,6 +73,7 @@
               >
                 Next
               </nuxt-link>
+              <div v-else></div>
             </div>
             <div
               class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
@@ -112,6 +114,8 @@
                       />
                     </svg>
                   </nuxt-link>
+                  <div v-else></div>
+
                   <nuxt-link
                     v-if="!ads.pagination.is_last_page && ads.data.length !== 0"
                     :to="{
@@ -133,6 +137,7 @@
                       />
                     </svg>
                   </nuxt-link>
+                  <div v-else></div>
                 </nav>
               </div>
             </div>
