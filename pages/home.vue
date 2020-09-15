@@ -165,7 +165,7 @@ export default {
   async asyncData({ route, $axios }) {
     const pageNumber =
       Object.keys(route.query).length === 0 ? 1 : route.query.page
-    const url = `/v1/ads?page=${pageNumber}`
+    const url = `/v1/items?page=${pageNumber}`
 
     const ads = await $axios.$get(url)
     return { ads }

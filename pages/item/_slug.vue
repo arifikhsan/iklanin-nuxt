@@ -78,7 +78,7 @@ export default {
     }
   },
   async asyncData({ $axios, route }) {
-    const response = await $axios.$get('/v1/ads/' + route.params.slug)
+    const response = await $axios.$get('/v1/items/' + route.params.slug)
     return { ad: response.data }
   },
   data() {
