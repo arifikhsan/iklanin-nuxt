@@ -20,7 +20,7 @@
           {{ ad.title }}
         </h1>
         <div class="py-2">
-          <p class="font-medium text-red-500">Harga</p>
+          <p class="font-semibold text-red-500">Harga</p>
           <p class="mt-2">
             {{
               ad.price.toLocaleString('id', {
@@ -31,16 +31,16 @@
           </p>
         </div>
         <div class="py-2">
-          <p class="font-medium text-red-500">Deksripsi</p>
+          <p class="font-semibold text-red-500">Deksripsi</p>
           <p class="mt-2">{{ ad.detail }}</p>
         </div>
         <div class="py-2">
-          <p class="font-medium text-red-500">Kategori</p>
+          <p class="font-semibold text-red-500">Kategori</p>
           <p class="mt-2">{{ ad.category.name }}</p>
         </div>
         <div class="py-2">
           <div>
-            <p class="font-medium text-red-500">Hubungi kontak berikut</p>
+            <p class="font-semibold text-red-500">Hubungi kontak berikut</p>
             <p>Nama: {{ ad.user.name }}</p>
             <p>Email: {{ ad.user.email }}</p>
           </div>
