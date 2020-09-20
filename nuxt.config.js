@@ -32,9 +32,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    {src: '@/plugins/vue-progressive-image.js', mode: 'client'}
-  ],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="md:flex md:space-x-4">
-      <div class="md:w-1/2">
+    <div class="md:flex md:space-x-4 lg:space-x-10 lg:px-4">
+      <div class="md:w-1/2 lg:w-1/3 lg:mt-4">
         <img
           class="object-cover w-full h-64 rounded-md"
           :src="ad.cover_image.url.medium"
@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-      <div class="mt-4 md:mt-0 md:w-1/2">
+      <div class="mt-4 md:mt-0 md:w-1/2 lg:w-2/3">
         <h1 class="py-2 text-3xl font-bold text-grey-800">
           {{ ad.title }}
         </h1>
@@ -41,8 +41,12 @@
         <div class="py-2">
           <div>
             <p class="font-semibold text-red-500">Hubungi kontak berikut</p>
-            <p>Nama: {{ ad.user.name }}</p>
-            <p>Email: {{ ad.user.email }}</p>
+            <div class="mt-2">
+              <p>Nama: {{ ad.user.name }}</p>
+              <p>Email: {{ ad.user.email }}</p>
+              <p>Nomor HP: {{ ad.user.phone_number }}</p>
+              <p>Nomor Whatsapp: {{ ad.user.whatsapp_phone_number }}</p>
+            </div>
           </div>
           <div v-if="!$auth.loggedIn" class="mt-8">
             <nuxt-link
