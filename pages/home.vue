@@ -10,7 +10,7 @@
             </div>
             <div
               v-else
-              class="flex flex-col justify-start w-1/2 my-2 duration-500 sm:w-1/3 md:w-1/4"
+              class="flex flex-col justify-start w-1/2 my-2 duration-500 md:w-1/3 lg:w-1/4"
               v-for="ad in ads.data"
               :key="ad.id"
             >

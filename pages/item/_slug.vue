@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="md:flex md:space-x-4 lg:space-x-10 lg:px-4">
-      <div class="md:w-1/2 lg:w-1/3 lg:mt-4">
+  <div class="space-y-8">
+    <div class="md:flex md:space-x-6 lg:space-x-10 lg:px-4">
+      <div class="md:w-1/2 lg:w-1/3 md:mt-4">
         <img
           class="object-cover w-full h-64 rounded-md"
           :src="ad.cover_image.url.medium"
@@ -65,6 +65,51 @@
               class="block px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
             >
               Mau buat iklan seperti ini?
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="py-4"><h1 class="text-3xl font-bold">Iklan Sejenis</h1></div>
+      <div class="flex flex-wrap">
+        <div v-if="ad.related.length === 0" class="w-full py-4 text-center">
+          <p>Tidak ada iklan yang ditemukan.</p>
+        </div>
+        <div
+          v-else
+          class="flex flex-col justify-start w-full my-2 duration-500 md:w-1/3 lg:w-1/4"
+          v-for="ad in ad.related"
+          :key="ad.id"
+        >
+          <div
+            class="p-2 transition duration-500 ease-in-out rounded-md hover:shadow-md hover:border group hover:border-red-400"
+          >
+            <nuxt-link :to="{ name: 'item-slug', params: { slug: ad.slug } }">
+              <img
+                class="object-cover w-full h-48 rounded-md"
+                :src="ad.cover_image_url"
+              />
+              <div class="p-2">
+                <div
+                  class="overflow-hidden text-xl font-medium leading-snug text-red-500 truncate group-hover:text-red-600"
+                >
+                  {{
+                    ad.price.toLocaleString('id', {
+                      style: 'currency',
+                      currency: 'IDR',
+                    })
+                  }}
+                </div>
+                <div class="mt-1">
+                  <p class="truncate-3-lines">
+                    {{ ad.title }}
+                  </p>
+                  <p class="mt-1 text-xs">
+                    {{ ad.user.name }}
+                  </p>
+                </div>
+              </div>
             </nuxt-link>
           </div>
         </div>
