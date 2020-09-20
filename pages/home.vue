@@ -3,7 +3,7 @@
     <client-only>
       <div>
         <div class="mt-4">
-          <h1 class="text-3xl font-bold text-red-500">Terbaru</h1>
+          <h1 class="text-3xl font-bold">Terbaru</h1>
           <div class="flex flex-wrap mt-4 -mr-2">
             <div v-if="items.data.length === 0" class="w-full py-4 text-center">
               <p>Tidak ada iklan yang ditemukan.</p>
@@ -48,6 +48,8 @@
               </div>
             </div>
           </div>
+
+          <!-- pagination -->
           <div
             class="flex items-center justify-between py-3 mt-6 bg-white border-gray-200"
           >
