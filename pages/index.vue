@@ -29,7 +29,7 @@
               <div class="rounded-md shadow">
                 <nuxt-link
                   to="/home"
-                  class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline md:py-4 md:text-lg md:px-10"
+                  class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline md:py-4 md:text-lg md:px-10"
                 >
                   Lihat listing
                 </nuxt-link>
@@ -38,7 +38,7 @@
                 <a
                   :href="groupLink"
                   target="_blank"
-                  class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-center text-red-700 transition duration-150 ease-in-out bg-red-100 border border-transparent rounded-md hover:text-red-600 hover:bg-red-50 focus:outline-none focus:shadow-outline focus:border-red-300 md:py-4 md:text-lg md:px-10"
+                  class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-center text-red-700 transition duration-150 ease-in-out bg-red-100 border border-transparent rounded-md hover:text-red-600 hover:bg-red-50 focus:outline-none focus:shadow-outline focus:border-red-300 md:py-4 md:text-lg md:px-10"
                 >
                   Gabung grup WhatsApp
                 </a>
@@ -52,7 +52,7 @@
           <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
             <div class="lg:text-center">
               <p
-                class="text-base font-semibold leading-6 tracking-wide text-red-600 uppercase"
+                class="text-base font-semibold tracking-wide text-red-600 uppercase"
               >
                 Sebuah Konsep
               </p>
@@ -92,10 +92,10 @@
                       </div>
                     </div>
                     <div class="ml-4">
-                      <h4 class="text-lg font-medium leading-6 text-gray-900">
+                      <h4 class="text-lg font-medium text-gray-900">
                         Akses global
                       </h4>
-                      <p class="mt-2 text-base leading-6 text-gray-500">
+                      <p class="mt-2 text-base text-gray-500">
                         Iklan bisa dilihat oleh banyak orang (segera).
                       </p>
                     </div>
@@ -123,10 +123,10 @@
                       </div>
                     </div>
                     <div class="ml-4">
-                      <h4 class="text-lg font-medium leading-6 text-gray-900">
+                      <h4 class="text-lg font-medium text-gray-900">
                         Gratis
                       </h4>
-                      <p class="mt-2 text-base leading-6 text-gray-500">
+                      <p class="mt-2 text-base text-gray-500">
                         Pasang iklan gratis tanpa biaya selama 90 hari dan bisa diperpanjang.
                       </p>
                     </div>
@@ -154,10 +154,10 @@
                       </div>
                     </div>
                     <div class="ml-4">
-                      <h4 class="text-lg font-medium leading-6 text-gray-900">
+                      <h4 class="text-lg font-medium text-gray-900">
                         Cepat laku
                       </h4>
-                      <p class="mt-2 text-base leading-6 text-gray-500">
+                      <p class="mt-2 text-base text-gray-500">
                         Temukan peminat iklan Anda dengan cepat (segera).
                       </p>
                     </div>
@@ -185,10 +185,10 @@
                       </div>
                     </div>
                     <div class="ml-4">
-                      <h4 class="text-lg font-medium leading-6 text-gray-900">
+                      <h4 class="text-lg font-medium text-gray-900">
                         Komunitas aktif
                       </h4>
-                      <p class="mt-2 text-base leading-6 text-gray-500">
+                      <p class="mt-2 text-base text-gray-500">
                         Gabung grup WhatsApp untuk mengetahui tentang apa yang
                         terjadi di belakang layar.
                       </p>
@@ -216,7 +216,7 @@
               <div class="inline-flex rounded-md shadow">
                 <nuxt-link
                   to="/home"
-                  class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline"
+                  class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline"
                 >
                   Lihat Listing
                 </nuxt-link>
@@ -225,7 +225,7 @@
                 <a
                   :href="groupLink"
                   target="_blank"
-                  class="inline-flex items-center justify-center px-5 py-3 text-base font-medium leading-6 text-red-600 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-red-500 focus:outline-none focus:shadow-outline"
+                  class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-red-600 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-red-500 focus:outline-none focus:shadow-outline"
                 >
                   Gabung grup WhatsApp
                 </a>
