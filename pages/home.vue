@@ -1,10 +1,10 @@
 <template>
   <div>
     <client-only>
-      <div class="sm:px-4">
+      <div>
         <div class="mt-4">
           <h1 class="text-3xl font-bold text-red-500">Terbaru</h1>
-          <div class="flex flex-wrap mt-4">
+          <div class="flex flex-wrap mt-4 -mr-2">
             <div v-if="items.data.length === 0" class="w-full py-4 text-center">
               <p>Tidak ada iklan yang ditemukan.</p>
             </div>
@@ -21,7 +21,7 @@
                   :to="{ name: 'item-slug', params: { slug: ad.slug } }"
                 >
                   <img
-                    class="object-cover w-full h-32 rounded-md"
+                    class="object-cover w-full h-48 rounded-md"
                     :src="ad.cover_image_url"
                   />
                   <div class="p-2">

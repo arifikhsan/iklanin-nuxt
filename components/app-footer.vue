@@ -1,12 +1,12 @@
 <template>
-  <footer class="max-w-5xl mx-auto text-gray-700 body-font">
+  <footer class="max-w-5xl mx-auto leading-loose text-gray-700 body-font">
     <div
-      class="container flex flex-col items-center px-5 py-8 mx-auto sm:flex-row"
+      class="container flex flex-col items-center px-4 py-8 mx-auto sm:flex-row"
     >
       <a
         class="flex items-center justify-center font-medium text-gray-900 title-font md:justify-start"
       >
-        <span class="ml-3 text-xl">Iklanin</span>
+        <span class="text-xl">Iklanin</span>
       </a>
       <p
         class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0"

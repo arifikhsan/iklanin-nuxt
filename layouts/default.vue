@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <div class="max-w-5xl p-4 mx-auto">
-      <div class="text-gray-800 font-body">
+      <div class="leading-loose text-gray-800 font-body">
         <nuxt />
       </div>
     </div>
