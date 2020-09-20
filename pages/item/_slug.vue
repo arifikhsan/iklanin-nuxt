@@ -43,9 +43,20 @@
             <p class="font-semibold text-red-500">Hubungi kontak berikut</p>
             <div class="mt-2">
               <p>Nama: {{ ad.user.name }}</p>
-              <p>Email: {{ ad.user.email }}</p>
-              <p>Nomor HP: {{ ad.user.phone_number }}</p>
-              <p>Nomor Whatsapp: {{ ad.user.whatsapp_phone_number }}</p>
+              <p>
+                Nomor HP:
+                {{
+                  ad.user.phone_number ? ad.user.phone_number : 'Tidak tersedia'
+                }}
+              </p>
+              <p>
+                Nomor Whatsapp:
+                {{
+                  ad.user.whatsapp_phone_number
+                    ? ad.user.whatsapp_phone_number
+                    : 'Tidak tersedia'
+                }}
+              </p>
             </div>
           </div>
           <div v-if="!$auth.loggedIn" class="mt-8">
