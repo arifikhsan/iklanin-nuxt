@@ -20,8 +20,7 @@
             <p
               class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
             >
-              Jual barang atau jasa sekarang dengan situs iklan baris gratis
-              dari
+              Jual barang atau jasa dengan situs iklan baris gratis dari
               <span class="text-red-500">Iklanin</span>!
             </p>
             <div
@@ -39,7 +38,7 @@
                 <a
                   :href="groupLink"
                   target="_blank"
-                  class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-red-700 transition duration-150 ease-in-out bg-red-100 border border-transparent rounded-md hover:text-red-600 hover:bg-red-50 focus:outline-none focus:shadow-outline focus:border-red-300 md:py-4 md:text-lg md:px-10"
+                  class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-center text-red-700 transition duration-150 ease-in-out bg-red-100 border border-transparent rounded-md hover:text-red-600 hover:bg-red-50 focus:outline-none focus:shadow-outline focus:border-red-300 md:py-4 md:text-lg md:px-10"
                 >
                   Gabung grup WhatsApp
                 </a>
