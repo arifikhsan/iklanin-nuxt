@@ -3,13 +3,9 @@
     <div class="flex items-center justify-between max-w-5xl p-4 md:mx-auto">
       <div>
         <nuxt-link
-          v-if="$auth.loggedIn"
           class="text-2xl font-bold text-red-500"
-          to="/home"
+          :to="$auth.loggedIn ? '/home' : '/'"
         >
-          Iklanin
-        </nuxt-link>
-        <nuxt-link v-else class="text-2xl font-bold text-red-500" to="/">
           Iklanin
         </nuxt-link>
       </div>
@@ -37,16 +33,16 @@
         </button>
       </div>
 
-      <div class="hidden md:block md:ml-10 md:pr-4">
+      <div class="hidden md:block">
         <div v-if="$auth.loggedIn">
           <nuxt-link
             to="/iklanku/baru"
-            class="ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
+            class="inline-block font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
             >Buat iklan
           </nuxt-link>
           <nuxt-link
             to="/iklanku"
-            class="ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
+            class="inline-block ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
             >Iklanku
           </nuxt-link>
           <button

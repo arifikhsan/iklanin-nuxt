@@ -49,7 +49,7 @@
             </div>
           </div>
           <div
-            class="flex items-center justify-between py-3 mt-6 bg-white border-t border-gray-200"
+            class="flex items-center justify-between py-3 mt-6 bg-white border-gray-200"
           >
             <div class="flex justify-between flex-1 sm:hidden">
               <nuxt-link
