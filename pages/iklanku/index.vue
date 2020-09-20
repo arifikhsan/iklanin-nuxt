@@ -4,7 +4,7 @@
       <h1 class="text-2xl font-semibold text-gray-700">Iklanku</h1>
     </div>
     <div class="mt-4 space-y-4 text-gray-800">
-      <div v-for="product in myAds" :key="product.id">
+      <div v-for="product in myItems" :key="product.id">
         <div>
           <nuxt-link
             :to="{ name: 'item-slug', params: { slug: product.slug } }"
@@ -42,13 +42,13 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      myAds: '',
+      myItems: '',
     }
   },
   apollo: {
-    myAds: gql`
+    myItems: gql`
       query {
-        myAds {
+        myItems {
           id
           slug
           title
@@ -75,7 +75,7 @@ export default {
           this.$toast.success('Iklan telah dihapus.', {
             duration: 6000,
           })
-          this.$apollo.queries.myAds.refetch()
+          this.$apollo.queries.myItems.refetch()
         })
         .catch(() => {
           this.$toast.error('Iklan gagal dihapus', {

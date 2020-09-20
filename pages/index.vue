@@ -127,7 +127,7 @@
                         Gratis
                       </h4>
                       <p class="mt-2 text-base leading-6 text-gray-500">
-                        Pasang iklan gratis tanpa biaya.
+                        Pasang iklan gratis tanpa biaya selama 90 hari dan bisa diperpanjang.
                       </p>
                     </div>
                   </div>

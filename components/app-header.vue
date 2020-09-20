@@ -40,9 +40,9 @@
       <div class="hidden md:block md:ml-10 md:pr-4">
         <div v-if="$auth.loggedIn">
           <nuxt-link
-            to="/item"
+            to="/iklanku/baru"
             class="ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
-            >Tambah iklan
+            >Buat iklan
           </nuxt-link>
           <nuxt-link
             to="/iklanku"
@@ -112,10 +112,10 @@
             </nuxt-link>
             <div v-if="$auth.loggedIn">
               <nuxt-link
-                to="/item"
+                to="/iklanku/baru"
                 class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
               >
-                Tambah iklan
+                Buat iklan
               </nuxt-link>
               <nuxt-link
                 to="/iklanku"

@@ -5,13 +5,13 @@
         <div class="mt-4">
           <h1 class="text-3xl font-bold text-red-500">Terbaru</h1>
           <div class="flex flex-wrap mt-4">
-            <div v-if="ads.data.length === 0" class="w-full py-4 text-center">
+            <div v-if="items.data.length === 0" class="w-full py-4 text-center">
               <p>Tidak ada iklan yang ditemukan.</p>
             </div>
             <div
               v-else
               class="flex flex-col justify-start w-1/2 my-2 duration-500 md:w-1/3 lg:w-1/4"
-              v-for="ad in ads.data"
+              v-for="ad in items.data"
               :key="ad.id"
             >
               <div
@@ -53,10 +53,10 @@
           >
             <div class="flex justify-between flex-1 sm:hidden">
               <nuxt-link
-                v-if="!ads.pagination.is_first_page"
+                v-if="!items.pagination.is_first_page"
                 :to="{
                   name: 'home',
-                  query: { page: ads.pagination.prev_page },
+                  query: { page: items.pagination.prev_page },
                 }"
                 class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
               >
@@ -64,10 +64,10 @@
               </nuxt-link>
               <div v-else></div>
               <nuxt-link
-                v-if="!ads.pagination.is_last_page && ads.data.length !== 0"
+                v-if="!items.pagination.is_last_page && items.data.length !== 0"
                 :to="{
                   name: 'home',
-                  query: { page: ads.pagination.next_page },
+                  query: { page: items.pagination.next_page },
                 }"
                 class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
               >
@@ -82,11 +82,11 @@
                 <p class="text-sm leading-5 text-gray-700">
                   Halaman
                   <span class="font-medium">{{
-                    ads.pagination.current_page
+                    items.pagination.current_page
                   }}</span>
                   dari
                   <span class="font-medium">{{
-                    ads.pagination.total_pages
+                    items.pagination.total_pages
                   }}</span>
                   halaman.
                 </p>
@@ -94,10 +94,10 @@
               <div>
                 <nav class="relative z-0 inline-flex shadow-sm">
                   <nuxt-link
-                    v-if="!ads.pagination.is_first_page"
+                    v-if="!items.pagination.is_first_page"
                     :to="{
                       name: 'home',
-                      query: { page: ads.pagination.prev_page },
+                      query: { page: items.pagination.prev_page },
                     }"
                     class="relative inline-flex items-center px-2 py-2 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-l-md hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500"
                     aria-label="Previous"
@@ -117,10 +117,10 @@
                   <div v-else></div>
 
                   <nuxt-link
-                    v-if="!ads.pagination.is_last_page && ads.data.length !== 0"
+                    v-if="!items.pagination.is_last_page && items.data.length !== 0"
                     :to="{
                       name: 'home',
-                      query: { page: ads.pagination.next_page },
+                      query: { page: items.pagination.next_page },
                     }"
                     class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-r-md hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500"
                     aria-label="Next"
@@ -155,7 +155,7 @@ export default {
   },
   data() {
     return {
-      ads: {
+      items: {
         data: [],
         pagination: '',
       },
@@ -167,8 +167,8 @@ export default {
       Object.keys(route.query).length === 0 ? 1 : route.query.page
     const url = `/v1/items?page=${pageNumber}`
 
-    const ads = await $axios.$get(url)
-    return { ads }
+    const items = await $axios.$get(url)
+    return { items }
   },
 }
 </script>

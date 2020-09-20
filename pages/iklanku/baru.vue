@@ -111,7 +111,7 @@
           ></textarea>
         </div>
         <div class="my-4">
-          <p>Iklan akan langsung tayang hingga 30 hari kedepan.</p>
+          <p>Iklan akan langsung tayang hingga 90 hari kedepan.</p>
         </div>
         <div class="mt-6">
           <div v-if="!done">
@@ -214,8 +214,6 @@ export default {
 
       this.$axios
         .$post('/v1/items', formData)
-        // .then((res) => console.log(res))
-        // .catch((err) => console.log(res))
         .then((res) => {
           this.$toast.success('Sukses membuat iklan.', {
             duration: 6000,

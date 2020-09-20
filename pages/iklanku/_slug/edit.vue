@@ -28,7 +28,7 @@
         <span class="text-gray-700">Pilih Kategori</span>
         <select
           v-model="ad.category.id"
-          class="form-select block w-full mt-1"
+          class="block w-full mt-1 form-select"
           required
         >
           <option
@@ -134,7 +134,7 @@ export default {
       },
       query: gql`
         query($slug: String!) {
-          ad: findAd(slug: $slug) {
+          ad: findItem(slug: $slug) {
             id
             price
             title
