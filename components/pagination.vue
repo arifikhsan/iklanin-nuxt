@@ -7,7 +7,7 @@
       <nuxt-link
         v-if="!items.pagination.is_first_page"
         :to="{
-          name: 'home',
+          name: linkName,
           query: { page: items.pagination.prev_page },
         }"
         class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
@@ -18,7 +18,7 @@
       <nuxt-link
         v-if="!items.pagination.is_last_page && items.data.length !== 0"
         :to="{
-          name: 'home',
+          name: linkName,
           query: { page: items.pagination.next_page },
         }"
         class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700"
@@ -42,7 +42,7 @@
           <nuxt-link
             v-if="!items.pagination.is_first_page"
             :to="{
-              name: 'home',
+              name: linkName,
               query: { page: items.pagination.prev_page },
             }"
             class="relative inline-flex items-center px-2 py-2 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-l-md hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500"
@@ -61,7 +61,7 @@
           <nuxt-link
             v-if="!items.pagination.is_last_page && items.data.length !== 0"
             :to="{
-              name: 'home',
+              name: linkName,
               query: { page: items.pagination.next_page },
             }"
             class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-r-md hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500"
@@ -84,6 +84,6 @@
 
 <script>
 export default {
-  props
+  props: ['linkName', 'items'],
 }
 </script>
