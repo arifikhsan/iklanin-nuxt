@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-md mx-auto">
+  <div class="max-w-xl mx-auto">
     <form
       @submit.prevent="updateOrCreateFunction"
       enctype="multipart/form-data"
@@ -22,11 +22,12 @@
       <div class="mt-4">
         <p class="text-gray-700">Gambar <span class="text-red-500">*</span></p>
         <div>
-          <div class="flex flex-wrap mt-4 space-y-6 md:space-x-6">
+          <div class="flex flex-wrap mt-4">
             <div
               v-show="item.images.length != 0"
               v-for="(image, index) in item.images"
               :key="image.id"
+              class="p-2"
             >
               <img
                 class="object-cover w-48 h-32 border rounded-md"
@@ -68,18 +69,20 @@
               </div>
             </div>
             <!-- add image -->
-            <div
-              class="relative flex items-center justify-center w-48 h-48 p-2 mt-1 border-2 border-red-500 border-dashed rounded-md"
-            >
-              <p class="text-sm italic text-center">Upload gambar</p>
-              <input
-                type="file"
-                class="absolute block w-full h-full bg-red-300 opacity-0 pin-r pin-t"
-                accept="image/*"
-                @change="onFileChange"
-                multiple
-                required
-              />
+            <div class="p-2 mt-1">
+              <div
+                class="relative flex items-center justify-center w-48 h-48 border-2 border-red-500 border-dashed rounded-md"
+              >
+                <p class="text-sm italic text-center">Upload gambar</p>
+                <input
+                  type="file"
+                  class="absolute block w-full h-full bg-red-300 opacity-0 pin-r pin-t"
+                  accept="image/*"
+                  @change="onFileChange"
+                  multiple
+                  :required="item.images.length < 0"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -123,7 +126,7 @@
         <textarea
           v-model="item.detail"
           class="block w-full mt-1 form-textarea"
-          rows="6"
+          rows="20"
           placeholder="Tulis deskripsi"
           required
         ></textarea>
@@ -162,6 +165,9 @@ export default {
     updateOrCreateFunction: Function,
     item: Object,
     categories: Array,
+
+    // edit only
+    removedImageIds: Array,
   },
   data() {
     return {}
@@ -185,14 +191,16 @@ export default {
 
       // add
       newFilesNotDuplicate.map((file) => {
-        this.item.images.push({
+        const newImage = {
           id: Math.random(),
           name: file.name,
           detail: file.name.replace(/\.[^/.]+$/, ''),
           image: file,
           image_display: URL.createObjectURL(file),
           cover: false,
-        })
+        }
+        this.item.images.push(newImage)
+        // if (this.isEdit) this.addedImages.push(newImage)
       })
 
       // jika belum ada cover
@@ -204,9 +212,16 @@ export default {
       this.item.images.forEach((image, index) => {
         image.cover = index == selectedIndex
       })
+
+      // if (this.isEdit) {
+      //   this.addedImages.forEach((image, index) => {
+      //     image.cover = index == selectedIndex
+      //   })
+      // }
     },
     removeImage(image) {
       this.item.images.splice(this.item.images.indexOf(image), 1)
+      if (this.isEdit) this.removedImageIds.push(image.id)
     },
   },
 }

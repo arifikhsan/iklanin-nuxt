@@ -8,6 +8,7 @@
         :slug="slug"
         :categories="categories"
         :update-or-create-function="updateItem"
+        :removed-image-ids="removedImageIds"
       />
     </client-only>
   </div>
@@ -32,13 +33,12 @@ export default {
       categories: {},
       done: false,
       slug: '',
+      removedImageIds: [],
     }
   },
   async asyncData({ $axios, route }) {
     const item = await $axios.$get('/v1/items/' + route.params.slug + '/edit')
     const categories = await $axios.$get('/v1/categories')
-
-    // const formattedItem =
 
     return { item: item.data, categories: categories.data }
   },
@@ -64,45 +64,72 @@ export default {
     updateItem() {
       console.log('update')
 
-      // const images = this.item.images.map(
-      //   ({ id, image_display, ...keep }) => keep
-      // )
+      const images = this.item.images.map(
+        ({ id, image_display, ...keep }) => keep
+      )
 
-      // let formData = new FormData()
-      // formData.append('category_id', this.item.category_id)
-      // formData.append('title', this.item.title)
-      // formData.append('detail', this.item.detail)
-      // formData.append('price', this.item.price)
+      let formData = new FormData()
+      formData.append('category_id', this.item.category_id)
+      formData.append('title', this.item.title)
+      formData.append('detail', this.item.detail)
+      formData.append('price', this.item.price)
 
-      // images.forEach((image, index) => {
-      //   formData.append(`image_name[${index}]`, image.name)
-      //   formData.append(`image_file[${index}]`, image.image)
-      //   formData.append(`image_cover[${index}]`, image.cover)
-      //   formData.append(`image_detail[${index}]`, image.detail)
-      // })
+      if (this.removedImageIds.length > 0) {
+        this.removedImageIds.forEach((id, index) => {
+          formData.append(`removed_image_id[${index}]`, id)
+        })
+      }
 
-      // this.$axios
-      //   .$put('/v1/items', formData)
-      //   .then((res) => {
-      //     this.$toast.success('Sukses mengedit iklan.', {
-      //       duration: 6000,
-      //     })
-      //     this.slug = res.data.slug
-      //     this.done = true
-      //     this.item = {
-      //       category_id: '',
-      //       title: '',
-      //       detail: '',
-      //       price: null,
-      //       images: [],
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //     this.$toast.error('Gagal membuat iklan.', {
-      //       duration: 6000,
-      //     })
-      //   })
+      const addedImages = this.item.images.filter((e) => e.id < 1)
+      const keepImages = this.item.images.filter((e) => e.id >= 1)
+
+      console.log(this.item.images)
+      console.log(addedImages)
+
+      if (keepImages.length > 0) {
+        keepImages.forEach((image, index) => {
+          formData.append(`keep_image_id[${index}]`, image.id)
+          formData.append(`keep_image_name[${index}]`, image.name)
+          formData.append(`keep_image_cover[${index}]`, image.cover)
+          formData.append(`keep_image_detail[${index}]`, image.detail)
+        })
+      }
+
+      if (addedImages.length > 0) {
+        addedImages.forEach((image, index) => {
+          formData.append(`added_image_name[${index}]`, image.name)
+          formData.append(`added_image_file[${index}]`, image.image)
+          formData.append(`added_image_cover[${index}]`, image.cover)
+          formData.append(`added_image_detail[${index}]`, image.detail)
+        })
+      }
+
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ', ' + pair[1])
+      // }
+
+      this.$axios
+        .$put('/v1/items/' + this.$route.params.slug, formData)
+        .then((res) => {
+          this.$toast.success('Sukses mengedit iklan.', {
+            duration: 6000,
+          })
+          this.slug = res.data.slug
+          this.done = true
+          // this.item = {
+          //   category_id: '',
+          //   title: '',
+          //   detail: '',
+          //   price: null,
+          //   images: [],
+          // }
+        })
+        .catch((err) => {
+          console.log(err)
+          this.$toast.error('Gagal membuat iklan.', {
+            duration: 6000,
+          })
+        })
 
       //   this.$apollo
       //     .mutate({
