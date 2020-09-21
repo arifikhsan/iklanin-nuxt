@@ -12,11 +12,11 @@
             class="object-cover w-full h-64 rounded-md"
             :src="item.cover_image.url.medium"
           />
-          <div class="flex py-2 space-x-2">
+          <div class="flex flex-wrap py-2">
             <img
               v-for="image in item.images"
               :key="image.id"
-              class="object-cover w-16 h-16 rounded-md"
+              class="object-cover w-16 h-16 mb-2 mr-2 rounded-md"
               :src="image.url.small"
             />
           </div>
