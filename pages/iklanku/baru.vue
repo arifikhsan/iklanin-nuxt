@@ -11,7 +11,7 @@
           <p class="text-gray-700">Judul <span class="text-red-500">*</span></p>
           <input
             type="text"
-            v-model="ad.title"
+            v-model="item.title"
             class="block w-full mt-1 form-input"
             placeholder="Judul iklan"
             required
@@ -21,29 +21,15 @@
           <p class="text-gray-700">
             Gambar <span class="text-red-500">*</span>
           </p>
-          <label class="block">
-            <input
-              type="file"
-              class="block w-full mt-1 form-input"
-              accept="image/*"
-              @change="onFileChange"
-              multiple
-              required
-            />
-          </label>
-          <p class="mt-1 text-sm italic text-gray-600">
-            Dimensi gambar yang direkomendasikan 1080 x 1080. Ukuran maksimal
-            2MB tiap gambar.
-          </p>
-          <div v-if="ad.images.length != 0">
-            <div class="flex flex-wrap mt-4">
+          <div>
+            <div class="flex flex-wrap mt-4 space-y-6 md:space-x-6">
               <div
-                v-for="(image, index) in ad.images"
-                :key="image.name"
-                class="m-2"
+                v-show="item.images.length != 0"
+                v-for="(image, index) in item.images"
+                :key="image.id"
               >
                 <img
-                  class="object-cover w-32 h-32 border"
+                  class="object-cover w-48 h-32 border rounded-md"
                   :src="image.image_display"
                 />
                 <div class="mt-2">
@@ -56,25 +42,57 @@
                       @change="selectedCoverChange(index)"
                       :checked="index == 0"
                     />
-                    <span class="ml-2">Sampul</span>
+                    <span class="ml-2 text-sm">Sampul</span>
                   </label>
+                  <div class="text-sm">
+                    <p class="text-gray-700">
+                      Deskripsi singkat
+                    </p>
+                    <textarea
+                      rows="4"
+                      type="text"
+                      class="block w-full mt-1 text-sm form-textarea"
+                      placeholder="Tampak depan/samping/belakang"
+                      v-model="image.detail"
+                      required
+                    />
+                  </div>
+                  <div class="mt-4">
+                    <button
+                      @click="removeImage(image)"
+                      class="w-full px-4 py-2 text-sm text-center text-red-500 duration-500 bg-white border border-red-500 rounded-md hover:text-white hover:border-transparent hover:bg-red-600"
+                    >
+                      Hapus
+                    </button>
+                  </div>
                 </div>
               </div>
+              <!-- add image -->
+              <div
+                class="relative flex items-center justify-center w-48 h-48 p-2 mt-1 border-2 border-red-500 border-dashed rounded-md"
+              >
+                <p class="text-sm italic text-center">Upload gambar</p>
+                <input
+                  type="file"
+                  class="absolute block w-full h-full bg-red-300 opacity-0 pin-r pin-t"
+                  accept="image/*"
+                  @change="onFileChange"
+                  multiple
+                  required
+                />
+              </div>
             </div>
-            <button
-              type="button"
-              class="px-4 py-2 mt-4 text-sm border rounded"
-              @click="ad.images = []"
-            >
-              Hapus semua gambar
-            </button>
           </div>
+          <p class="mt-1 text-sm italic text-gray-600">
+            Dimensi gambar yang direkomendasikan 1080 x 1080. Ukuran maksimal
+            2MB tiap gambar.
+          </p>
         </div>
         <div class="block mt-4">
           <p class="text-gray-700">Harga <span class="text-red-500">*</span></p>
           <input
             type="number"
-            v-model="ad.price"
+            v-model="item.price"
             class="block w-full mt-1 form-input"
             placeholder="20000"
             required
@@ -85,7 +103,7 @@
             Pilih Kategori <span class="text-red-500">*</span>
           </p>
           <select
-            v-model="ad.category_id"
+            v-model="item.category_id"
             class="block w-full mt-1 form-select"
             required
           >
@@ -103,7 +121,7 @@
             Deskripsi <span class="text-red-500">*</span>
           </p>
           <textarea
-            v-model="ad.detail"
+            v-model="item.detail"
             class="block w-full mt-1 form-textarea"
             rows="6"
             placeholder="Tulis deskripsi"
@@ -137,8 +155,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-
 export default {
   head: {
     title: 'Tambahkan iklan',
@@ -146,11 +162,11 @@ export default {
   middleware: 'auth',
   data() {
     return {
-      ad: {
+      item: {
         category_id: 1,
         title: 'aa',
         detail: 'aaa',
-        price: '123',
+        price: 123,
         images: [],
         // timeStart: this.$moment().format('YYYY-MM-DDTHH:mm'),
         // timeEnd: this.$moment().add(10, 'days').format('YYYY-MM-DDTHH:mm'),
@@ -160,57 +176,70 @@ export default {
       categories: {},
     }
   },
-  apollo: {
-    categories: gql`
-      query {
-        categories: allCategories {
-          id
-          name
-          slug
-        }
-      }
-    `,
+  async asyncData({ $axios, route }) {
+    const categories = await $axios.$get('/v1/categories')
+
+    return { categories: categories.data }
   },
   methods: {
     onFileChange(e) {
-      const files = [...e.target.files]
-      files.map((file) => {
-        this.ad.images.push({
+      const newFiles = [...e.target.files]
+      const uploadedImages = [...this.item.images]
+      const uploadedImageFiles = uploadedImages.map((e) => e.image.name)
+
+      const newFilesNotDuplicate = []
+      newFiles.forEach((newFile) => {
+        if (uploadedImageFiles.includes(newFile.name)) {
+          this.$toast.info(`Gambar ${newFile.name} sudah ada.`, {
+            duration: 6000,
+          })
+        } else {
+          newFilesNotDuplicate.push(newFile)
+        }
+      })
+
+      // add
+      newFilesNotDuplicate.map((file) => {
+        this.item.images.push({
+          id: Math.random(),
           name: file.name,
+          detail: file.name.replace(/\.[^/.]+$/, ''),
           image: file,
           image_display: URL.createObjectURL(file),
           cover: false,
         })
       })
-      this.ad.images[0].cover = true
+
+      // jika belum ada cover
+      if (this.item.images.find((e) => e.cover !== true)) {
+        this.item.images[0].cover = true
+      }
     },
     selectedCoverChange(selectedIndex) {
-      this.ad.images.forEach((image, index) => {
+      this.item.images.forEach((image, index) => {
         image.cover = index == selectedIndex
       })
     },
+    removeImage(image) {
+      this.item.images.splice(this.item.images.indexOf(image), 1)
+    },
     sendAd() {
-      const images = this.ad.images.map(
-        ({ name, image_display, ...keep }) => keep
+      const images = this.item.images.map(
+        ({ id, image_display, ...keep }) => keep
       )
 
       let formData = new FormData()
-      formData.append('category_id', this.ad.category_id)
-      formData.append('title', this.ad.title)
-      formData.append('detail', this.ad.detail)
-      formData.append('price', this.ad.price)
+      formData.append('category_id', this.item.category_id)
+      formData.append('title', this.item.title)
+      formData.append('detail', this.item.detail)
+      formData.append('price', this.item.price)
 
       images.forEach((image, index) => {
+        formData.append(`image_name[${index}]`, image.name)
         formData.append(`image_file[${index}]`, image.image)
         formData.append(`image_cover[${index}]`, image.cover)
+        formData.append(`image_detail[${index}]`, image.detail)
       })
-
-      // for (var value of formData.keys()) {
-      //   console.log(value)
-      // }
-      // for (var value of formData.values()) {
-      //   console.log(value)
-      // }
 
       this.$axios
         .$post('/v1/items', formData)
@@ -220,8 +249,8 @@ export default {
           })
           this.slug = res.data.slug
           this.done = true
-          this.ad.title = ''
-          this.ad.detail = ''
+          this.item.title = ''
+          this.item.detail = ''
         })
         .catch((err) => {
           console.log(err)
@@ -229,16 +258,17 @@ export default {
             duration: 6000,
           })
         })
+
       // this.$apollo
       //   .mutate({
       //     variables: {
-      //       title: this.ad.title,
-      //       detail: this.ad.detail,
-      //       category_id: this.ad.category_id,
-      //       price: parseInt(this.ad.price),
-      //       time_start: this.$moment(this.ad.timeStart).toISOString(),
-      //       time_end: this.$moment(this.ad.timeEnd).toISOString(),
-      //       images: this.ad.images.map(
+      //       title: this.item.title,
+      //       detail: this.item.detail,
+      //       category_id: this.item.category_id,
+      //       price: parseInt(this.item.price),
+      //       time_start: this.$moment(this.item.timeStart).toISOString(),
+      //       time_end: this.$moment(this.item.timeEnd).toISOString(),
+      //       images: this.item.images.map(
       //         ({ name, image_display, ...keep }) => keep
       //       ),
       //     },

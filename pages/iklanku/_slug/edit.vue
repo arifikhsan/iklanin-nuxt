@@ -90,8 +90,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-
 export default {
   head: {
     title: 'Edit iklan',
@@ -106,6 +104,12 @@ export default {
       done: false,
       newslug: '',
     }
+  },
+  async asyncData({ $axios, route }) {
+    const items = await $axios.$get('/v1/items/' + route.params.slug)
+    const categories = await $axios.$get('/v1/categories')
+
+    return { item: items.data, categories: items.data }
   },
   computed: {
     newTimeStart: {
@@ -132,21 +136,6 @@ export default {
           slug: this.$route.params.slug,
         }
       },
-      query: gql`
-        query($slug: String!) {
-          ad: findItem(slug: $slug) {
-            id
-            price
-            title
-            detail
-            timeStart
-            timeEnd
-            category {
-              id
-            }
-          }
-        }
-      `,
     },
     categories: gql`
       query {
