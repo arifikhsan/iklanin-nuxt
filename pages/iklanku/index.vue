@@ -8,7 +8,7 @@
         <div v-for="item in items.data" :key="item.id">
           <h2 class="text-xl font-semibold">{{ item.title }}</h2>
           <p class="truncate-3-lines">{{ item.detail }}</p>
-          <div class="mt-4 text-sm">
+          <div class="mt-4 text-sm text-gray-600">
             <p>Tanggal terbit: {{ $moment(item.time_start).format('LLLL') }}</p>
             <p>Tanggal selesai: {{ $moment(item.time_end).format('LLLL') }}</p>
           </div>
@@ -127,7 +127,7 @@
                             href="#"
                             class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                             role="menuitem"
-                            >Add to favorites</a
+                            >Salin link</a
                           >
                         </div>
                         <div class="border-t border-gray-100"></div>

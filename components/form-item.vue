@@ -128,7 +128,7 @@
           required
         ></textarea>
       </div>
-      <div class="my-4">
+      <div v-show="!isEdit" class="my-4">
         <p>Iklan akan langsung tayang hingga 90 hari kedepan.</p>
       </div>
       <div class="mt-6">
