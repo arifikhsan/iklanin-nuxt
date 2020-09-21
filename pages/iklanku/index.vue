@@ -38,7 +38,7 @@
                             : (dropdownItemIdOpen = item.id)
                         "
                       >
-                        Options
+                        Pilihan
                         <!-- Heroicon name: chevron-down -->
                         <svg
                           class="w-5 h-5 ml-2 -mr-1"
