@@ -39,10 +39,18 @@
                     type="radio"
                     class="text-red-500 form-radio"
                     name="radio"
+                    v-model="image.cover"
+                    :value="true"
+                    @change="selectedCoverChange(index)"
+                  />
+                  <!-- <input
+                    type="radio"
+                    class="text-red-500 form-radio"
+                    name="radio"
                     :value="index"
                     @change="selectedCoverChange(index)"
                     :checked="index == 0"
-                  />
+                  /> -->
                   <span class="ml-2 text-sm">Sampul</span>
                 </label>
                 <div class="text-sm">
@@ -135,7 +143,7 @@
         <p>Iklan akan langsung tayang hingga 90 hari kedepan.</p>
       </div>
       <div class="mt-6">
-        <div v-if="!done">
+        <div v-if="!done || isEdit">
           <button
             class="block w-full px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
             type="submit"
@@ -143,7 +151,7 @@
             {{ isEdit ? 'Update' : 'Buat Iklan!' }}
           </button>
         </div>
-        <div v-else>
+        <div v-if="done">
           <nuxt-link
             class="block w-full px-4 py-2 mt-2 text-center text-red-500 duration-500 bg-white border border-red-500 rounded-md hover:bg-red-600 hover:text-white"
             :to="{ name: 'item-slug', params: { slug: slug } }"
@@ -209,9 +217,14 @@ export default {
       }
     },
     selectedCoverChange(selectedIndex) {
-      this.item.images.forEach((image, index) => {
-        image.cover = index == selectedIndex
+      this.item.images.map((image, index) => {
+        // image.cover = index == selectedIndex
+        if (selectedIndex != index) {
+          image.cover = false
+        }
       })
+
+      // this.item.images.filter((e, i) => i != selectedIndex)
 
       // if (this.isEdit) {
       //   this.addedImages.forEach((image, index) => {

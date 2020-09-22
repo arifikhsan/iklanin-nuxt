@@ -81,7 +81,6 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err)
           this.$toast.error('Gagal membuat iklan.', {
             duration: 6000,
           })

@@ -62,8 +62,6 @@ export default {
   },
   methods: {
     updateItem() {
-      console.log('update')
-
       const images = this.item.images.map(
         ({ id, image_display, ...keep }) => keep
       )
@@ -82,9 +80,6 @@ export default {
 
       const addedImages = this.item.images.filter((e) => e.id < 1)
       const keepImages = this.item.images.filter((e) => e.id >= 1)
-
-      console.log(this.item.images)
-      console.log(addedImages)
 
       if (keepImages.length > 0) {
         keepImages.forEach((image, index) => {
@@ -125,7 +120,6 @@ export default {
           // }
         })
         .catch((err) => {
-          console.log(err)
           this.$toast.error('Gagal membuat iklan.', {
             duration: 6000,
           })
