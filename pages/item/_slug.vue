@@ -10,14 +10,18 @@
         <div class="md:w-1/2 lg:w-2/5 md:mt-4">
           <img
             class="object-cover w-full h-64 rounded-md"
-            :src="item.cover_image.url.medium"
+            :src="coverImage.url.original"
           />
           <div class="flex flex-wrap py-2">
             <img
               v-for="image in item.images"
               :key="image.id"
-              class="object-cover w-16 h-16 mb-2 mr-2 rounded-md"
+              :class="{
+                'border-2 border-red-500': image.cover === coverImage.cover,
+              }"
+              class="object-cover w-16 h-16 mb-2 mr-2 rounded-md cursor-pointer"
               :src="image.url.small"
+              @click="coverImage = image"
             />
           </div>
         </div>
@@ -145,12 +149,16 @@ export default {
   },
   async asyncData({ $axios, route }) {
     const response = await $axios.$get('/v1/items/' + route.params.slug)
-    return { item: response.data }
+    const coverImage = response.data.images.find((e) => e.cover)
+    return { item: response.data, coverImage }
   },
   data() {
     return {
       item: {},
       slug: this.$route.params.slug,
+      coverImage: {
+        url: {},
+      },
     }
   },
 }
