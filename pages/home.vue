@@ -21,7 +21,7 @@
                   :to="{ name: 'item-slug', params: { slug: ad.slug } }"
                 >
                   <img
-                    class="object-cover w-full h-32 rounded-md lg:h-48"
+                    class="object-cover w-32 h-32 rounded-md md:w-48 md:h-48"
                     :src="ad.cover_image_url"
                   />
                   <div class="p-2">
