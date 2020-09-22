@@ -11,6 +11,7 @@
           <img
             class="object-cover w-full h-64 rounded-md"
             :src="coverImage.url.original"
+            :alt="coverImage.detail"
           />
           <div class="flex flex-wrap py-2">
             <img
@@ -21,6 +22,7 @@
               }"
               class="object-cover w-16 h-16 mb-2 mr-2 rounded-md cursor-pointer"
               :src="image.url.small"
+              :alt="image.detail"
               @click="coverImage = image"
             />
           </div>
