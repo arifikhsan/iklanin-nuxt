@@ -9,6 +9,7 @@
           <h2 class="text-xl font-semibold">{{ item.title }}</h2>
           <p class="truncate-3-lines">{{ item.detail }}</p>
           <div class="mt-4 text-sm text-gray-600">
+            <p>Status: {{ item.status }}</p>
             <p>Tanggal terbit: {{ $moment(item.time_start).format('LLLL') }}</p>
             <p>Tanggal selesai: {{ $moment(item.time_end).format('LLLL') }}</p>
           </div>
@@ -16,6 +17,7 @@
             <div class="flex space-x-2">
               <nuxt-link
                 :to="{ name: 'item-slug', params: { slug: item.slug } }"
+                ref="itemLink"
                 class="px-4 py-2 text-gray-700 transition duration-500 border rounded hover:border-transparent hover:bg-gray-200"
               >
                 Lihat iklan ini
@@ -93,43 +95,45 @@
                             role="menuitem"
                             >Edit</nuxt-link
                           >
-                          <a
+                          <!-- <a
                             href="#"
                             class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                             role="menuitem"
                             >Buat lagi seperti ini</a
-                          >
+                          > -->
                         </div>
                         <div class="border-t border-gray-100"></div>
                         <div class="py-1">
-                          <a
+                          <!-- <a
                             href="#"
                             class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                             role="menuitem"
                             >Batal terbit</a
-                          >
-                          <a
-                            href="#"
-                            class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                          > -->
+                          <button
+                            @click="push(item)"
+                            class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                             role="menuitem"
-                            >Terbit ulang (sundul)</a
                           >
+                            Terbit ulang (sundul)
+                          </button>
                         </div>
                         <div class="border-t border-gray-100"></div>
-                        <div class="py-1">
+                        <!-- <div class="py-1">
                           <a
                             href="#"
                             class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                             role="menuitem"
                             >Bagikan</a
                           >
-                          <a
-                            href="#"
-                            class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                          <button
+                            @click="copyLink(item.id)"
+                            class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                             role="menuitem"
-                            >Salin link</a
                           >
-                        </div>
+                            Salin link
+                          </button>
+                        </div> -->
                         <div class="border-t border-gray-100"></div>
                         <div class="py-1">
                           <button
@@ -211,6 +215,27 @@ export default {
         Object.keys(this.$route.query).length === 0 ? 1 : this.$route.query.page
       const items = await this.$axios.$get(`/v1/items/me?page=${page}`)
       this.items = items
+    },
+    copyLink(id) {
+      console.log(this.$refs)
+      // console.log(this.$refs.itemLink[id])
+    },
+    push(item) {
+      if (confirm('Perbarui iklan selama 90 hari kedepan?')) {
+        this.$axios
+          .put(`/v1/items/${item.slug}/push`)
+          .then(() => {
+            this.refetch()
+            this.$toast.success('Iklan telah diperbarui.', {
+              duration: 6000,
+            })
+          })
+          .catch(() => {
+            this.$toast.error('Iklan gagal diperbarui', {
+              duration: 6000,
+            })
+          })
+      }
     },
     deleteAd(item) {
       if (confirm('Hapus iklan ini?')) {
