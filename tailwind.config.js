@@ -10,7 +10,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      'body': ['Open Sans']
+      body: ['Open Sans'],
     },
     truncate: {
       lines: {
@@ -23,6 +23,7 @@ module.exports = {
   variants: {},
   plugins: [
     require('@tailwindcss/custom-forms'),
+    require('@tailwindcss/typography'),
     require('tailwindcss-truncate-multiline')(),
   ],
   purge: {

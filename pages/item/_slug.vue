@@ -40,36 +40,36 @@
             </p>
           </div>
           <div class="py-2">
-            <p class="font-semibold text-red-500">Deksripsi</p>
-            <p class="mt-2">{{ item.detail }}</p>
-          </div>
-          <div class="py-2">
             <p class="font-semibold text-red-500">Kategori</p>
             <p class="mt-2">{{ item.category.name }}</p>
           </div>
           <div class="py-2">
-            <div>
-              <p class="font-semibold text-red-500">Hubungi kontak berikut</p>
-              <div class="mt-2">
-                <p>Nama: {{ item.user.name }}</p>
-                <p>
-                  Nomor HP:
-                  {{
-                    item.user.phone_number
-                      ? item.user.phone_number
-                      : 'Tidak tersedia'
-                  }}
-                </p>
-                <p>
-                  Nomor Whatsapp:
-                  {{
-                    item.user.whatsapp_phone_number
-                      ? item.user.whatsapp_phone_number
-                      : 'Tidak tersedia'
-                  }}
-                </p>
-              </div>
+            <p class="font-semibold text-red-500">Hubungi kontak berikut</p>
+            <div class="mt-2">
+              <p>Nama: {{ item.user.name }}</p>
+              <p>
+                Nomor HP:
+                {{
+                  item.user.phone_number
+                    ? item.user.phone_number
+                    : 'Tidak tersedia'
+                }}
+              </p>
+              <p>
+                Nomor Whatsapp:
+                {{
+                  item.user.whatsapp_phone_number
+                    ? item.user.whatsapp_phone_number
+                    : 'Tidak tersedia'
+                }}
+              </p>
             </div>
+          </div>
+          <div class="py-2">
+            <p class="font-semibold text-red-500">Deksripsi</p>
+            <p class="mt-2 prose break-words" v-html="item.detail"></p>
+          </div>
+          <div class="py-2">
             <div v-if="!$auth.loggedIn" class="mt-8">
               <nuxt-link
                 to="/login"

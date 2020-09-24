@@ -70,6 +70,7 @@
                   <button
                     @click="removeImage(image)"
                     class="w-full px-4 py-2 text-sm text-center text-red-500 duration-500 bg-white border border-red-500 rounded-md hover:text-white hover:border-transparent hover:bg-red-600"
+                    type="button"
                   >
                     Hapus
                   </button>
@@ -131,13 +132,7 @@
         <p class="text-gray-700">
           Deskripsi <span class="text-red-500">*</span>
         </p>
-        <textarea
-          v-model="item.detail"
-          class="block w-full mt-1 form-textarea"
-          rows="20"
-          placeholder="Tulis deskripsi"
-          required
-        ></textarea>
+        <editor :value="item.detail" v-on:input="item.detail = $event" />
       </div>
       <div v-show="!isEdit" class="my-4">
         <p>Iklan akan langsung tayang hingga 90 hari kedepan.</p>
@@ -165,7 +160,12 @@
 </template>
 
 <script>
+import Editor from '@/components/editor'
+
 export default {
+  components: {
+    editor: Editor,
+  },
   props: {
     isEdit: Boolean,
     done: Boolean,
@@ -176,9 +176,6 @@ export default {
 
     // edit only
     removedImageIds: Array,
-  },
-  data() {
-    return {}
   },
   methods: {
     onFileChange(e) {
