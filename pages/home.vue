@@ -20,10 +20,12 @@
                 <nuxt-link
                   :to="{ name: 'item-slug', params: { slug: ad.slug } }"
                 >
-                  <img
-                    class="object-cover w-32 h-32 rounded-md md:w-48 md:h-48"
-                    :src="ad.cover_image_url"
-                  />
+                  <div class="bg-gray-100 rounded-md">
+                    <img
+                      class="object-contain w-full h-32 md:h-48"
+                      :src="ad.cover_image_url"
+                    />
+                  </div>
                   <div class="p-2">
                     <div
                       class="overflow-hidden text-xl font-medium leading-snug text-red-500 truncate group-hover:text-red-600"
@@ -35,11 +37,11 @@
                         })
                       }}
                     </div>
-                    <div class="mt-1">
+                    <div class="mt-1 leading-normal">
                       <p class="truncate-3-lines">
                         {{ ad.title }}
                       </p>
-                      <p class="mt-1 text-xs">
+                      <p class="mt-1 text-sm">
                         {{ ad.user.name }}
                       </p>
                     </div>

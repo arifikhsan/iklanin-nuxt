@@ -8,23 +8,29 @@
       </div>
       <div class="mt-6 md:flex md:space-x-6 lg:space-x-10">
         <div class="md:w-1/2 lg:w-2/5 md:mt-4">
-          <img
-            class="object-cover w-full h-64 rounded-md"
-            :src="coverImage.url.original"
-            :alt="coverImage.detail"
-          />
-          <div class="flex flex-wrap py-2">
+          <div class="bg-gray-100 rounded-md">
             <img
+              class="object-contain w-full h-64"
+              :src="coverImage.url.medium"
+              :alt="coverImage.detail"
+            />
+          </div>
+          <div class="flex flex-wrap py-2">
+            <div
               v-for="image in item.images"
               :key="image.id"
+              class="mb-2 mr-2 bg-gray-100 rounded-md cursor-pointer"
               :class="{
-                'border-2 border-red-500': image.cover === coverImage.cover,
+                'border-2 border-red-500': image.id === coverImage.id,
               }"
-              class="object-cover w-16 h-16 mb-2 mr-2 rounded-md cursor-pointer"
-              :src="image.url.small"
-              :alt="image.detail"
-              @click="coverImage = image"
-            />
+            >
+              <img
+                class="object-contain w-16 h-16"
+                :src="image.url.small"
+                :alt="image.detail"
+                @click="coverImage = image"
+              />
+            </div>
           </div>
         </div>
         <div class="mt-4 md:mt-0 md:w-1/2 lg:w-3/5">
