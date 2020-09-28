@@ -21,14 +21,6 @@
         <button
           type="button"
           class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.strike() }"
-          @click="commands.strike"
-        >
-          Strike
-        </button>
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
           :class="{ 'is-active': isActive.underline() }"
           @click="commands.underline"
         >
@@ -47,81 +39,10 @@
         <button
           type="button"
           class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.paragraph() }"
-          @click="commands.paragraph"
-        >
-          Paragraph
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-          @click="commands.heading({ level: 1 })"
-        >
-          H1
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-          @click="commands.heading({ level: 2 })"
-        >
-          H2
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-          @click="commands.heading({ level: 3 })"
-        >
-          H3
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.bullet_list() }"
-          @click="commands.bullet_list"
-        >
-          UL
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.ordered_list() }"
-          @click="commands.ordered_list"
-        >
-          OL
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          :class="{ 'is-active': isActive.blockquote() }"
-          @click="commands.blockquote"
-        >
-          Quote
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
           :class="{ 'is-active': isActive.code_block() }"
           @click="commands.code_block"
         >
           Code
-        </button>
-
-        <button
-          type="button"
-          class="p-2 transition duration-500 rounded-md hover:bg-gray-200"
-          @click="commands.horizontal_rule"
-        >
-          Hr
         </button>
 
         <button
@@ -142,7 +63,7 @@
       </div>
     </editor-menu-bar>
     <editor-content
-      class="w-full mt-2 prose form-textarea"
+      class="w-full mt-2 leading-normal prose form-textarea"
       :editor="editor"
       required
     ></editor-content>
@@ -195,7 +116,6 @@ export default {
         new OrderedList(),
         new TodoItem(),
         new TodoList(),
-        new Link(),
         new Bold(),
         new Code(),
         new Italic(),

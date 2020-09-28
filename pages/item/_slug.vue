@@ -28,7 +28,11 @@
                   Tutup
                 </button>
               </div>
-              <img :src="coverImage.url.original" :alt="coverImage.detail" />
+              <img
+                class="max-w-xl"
+                :src="coverImage.url.original"
+                :alt="coverImage.detail"
+              />
               <div></div>
             </div>
           </div>

@@ -78,7 +78,7 @@
               </div>
             </div>
             <!-- add image -->
-            <div class="p-2 mt-1">
+            <div class="p-2 mt-1" v-show="item.images.length < 5">
               <div
                 class="relative flex items-center justify-center w-48 h-48 border-2 border-red-500 border-dashed rounded-md"
               >
@@ -95,10 +95,11 @@
             </div>
           </div>
         </div>
-        <p class="mt-1 text-sm italic text-gray-600">
-          Dimensi gambar yang direkomendasikan 1080 x 1080. Ukuran maksimal 2MB
-          tiap gambar.
-        </p>
+        <ul class="mt-1 text-sm italic text-gray-600">
+          <li>Dimensi gambar yang direkomendasikan 1080 x 1080.</li>
+          <li>Ukuran maksimal 2MB tiap gambar.</li>
+          <li>Maksimal 5 gambar.</li>
+        </ul>
       </div>
       <div class="block mt-4">
         <p class="text-gray-700">Harga <span class="text-red-500">*</span></p>
@@ -183,8 +184,25 @@ export default {
       const uploadedImages = [...this.item.images]
       const uploadedImageFiles = uploadedImages.map((e) => e.image.name)
 
+      if (newFiles.length + uploadedImages.length > 5) {
+        this.$toast.info('Gambar tidak boleh lebih dari 5', {
+          duration: 6000,
+        })
+        return
+      }
+
       const newFilesNotDuplicate = []
       newFiles.forEach((newFile) => {
+        if (newFile.size > 2000000) {
+          this.$toast.error(
+            `Gambar tidak boleh lebih dari 2 MB. Nama file: (${newFile.name})`,
+            {
+              duration: 6000,
+            }
+          )
+          return
+        }
+
         if (uploadedImageFiles.includes(newFile.name)) {
           this.$toast.info(`Gambar ${newFile.name} sudah ada.`, {
             duration: 6000,
