@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   mode: 'universal',
   /*
@@ -52,6 +54,7 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/auth',
     '@nuxtjs/toast',
+    '@nuxtjs/sitemap',
   ],
   /*
    ** Axios module configuration
@@ -104,5 +107,12 @@ export default {
   moment: {
     defaultLocale: 'id',
     locales: ['id'],
+  },
+  sitemap: {
+    hostname: process.env.BASE_URL,
+    routes: async () => {
+      const res = await axios.get(`${process.env.REST_URL}v1/items/sitemap`)
+      return res.data.data.map((item) => `/item/${item.slug}`)
+    },
   },
 }
