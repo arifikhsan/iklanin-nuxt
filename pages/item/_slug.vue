@@ -92,9 +92,14 @@
               </p>
             </div>
           </div>
-          <div class="py-2">
+          <div class="py-2 lg:hidden">
             <p class="font-semibold text-red-500">Deksripsi</p>
-            <p class="mt-2 prose break-words" v-html="item.detail"></p>
+            <div class="mt-2">
+              <div
+                class="leading-normal prose break-words"
+                v-html="item.detail"
+              ></div>
+            </div>
           </div>
           <div class="py-2">
             <div v-if="!$auth.loggedIn" class="mt-8">
@@ -106,6 +111,15 @@
               </nuxt-link>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="hidden py-2 lg:block">
+        <p class="font-semibold text-red-500">Deksripsi</p>
+        <div class="mt-2">
+          <div
+            class="leading-normal prose break-words"
+            v-html="item.detail"
+          ></div>
         </div>
       </div>
     </div>
