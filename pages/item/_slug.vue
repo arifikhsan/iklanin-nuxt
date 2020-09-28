@@ -8,12 +8,29 @@
       </div>
       <div class="mt-6 md:flex md:space-x-6 lg:space-x-10">
         <div class="md:w-1/2 lg:w-2/5 md:mt-4">
-          <div class="bg-gray-100 rounded-md">
+          <div
+            @click="toggleSlide"
+            class="bg-gray-100 rounded-md cursor-pointer"
+          >
             <img
               class="object-contain w-full h-64"
               :src="coverImage.url.medium"
               :alt="coverImage.detail"
             />
+          </div>
+          <div class="fixed inset-0" v-show="slideOpen">
+            <div
+              @click="toggleSlide"
+              class="flex flex-col items-center justify-between w-full h-full bg-gray-800 bg-opacity-75"
+            >
+              <div class="w-full text-right">
+                <button class="p-2 text-white">
+                  Tutup
+                </button>
+              </div>
+              <img :src="coverImage.url.original" :alt="coverImage.detail" />
+              <div></div>
+            </div>
           </div>
           <div class="flex flex-wrap py-2">
             <div
@@ -167,7 +184,13 @@ export default {
       coverImage: {
         url: {},
       },
+      slideOpen: false,
     }
+  },
+  methods: {
+    toggleSlide() {
+      this.slideOpen = !this.slideOpen
+    },
   },
 }
 </script>
