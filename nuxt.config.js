@@ -109,7 +109,7 @@ export default {
     locales: ['id'],
   },
   sitemap: {
-    hostname: process.env.BASE_URL,
+    hostname: process.env.FRONTEND_BASE_URL,
     routes: async () => {
       const res = await axios.get(`${process.env.REST_URL}v1/items/sitemap`)
       return res.data.data.map((item) => `/item/${item.slug}`)
