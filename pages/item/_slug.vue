@@ -125,10 +125,12 @@
             class="p-2 transition duration-500 ease-in-out rounded-md hover:shadow-md hover:border group hover:border-red-400"
           >
             <nuxt-link :to="{ name: 'item-slug', params: { slug: item.slug } }">
-              <img
-                class="object-cover w-full h-48 rounded-md"
-                :src="item.cover_image_url"
-              />
+              <div class="bg-gray-100">
+                <img
+                  class="object-contain w-full h-48 rounded-md"
+                  :src="item.cover_image_url"
+                />
+              </div>
               <div class="p-2">
                 <div
                   class="overflow-hidden text-xl font-medium leading-snug text-red-500 truncate group-hover:text-red-600"
