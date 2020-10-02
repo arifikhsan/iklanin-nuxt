@@ -76,7 +76,7 @@
     >
       <div
         v-show="menu"
-        class="absolute inset-x-0 top-0 transition origin-top-right transform"
+        class="fixed inset-x-0 top-0 z-50 transition origin-top-right transform"
       >
         <div class="rounded-lg shadow-md">
           <div
@@ -114,12 +114,6 @@
               </div>
             </div>
             <div class="px-2 pt-2 pb-3">
-              <nuxt-link
-                to="/home"
-                class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:bg-gray-200 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
-              >
-                Listing
-              </nuxt-link>
               <client-only>
                 <div v-if="$auth.loggedIn">
                   <nuxt-link
