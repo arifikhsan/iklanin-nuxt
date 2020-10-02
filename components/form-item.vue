@@ -95,7 +95,7 @@
             </div>
           </div>
         </div>
-        <ul class="mt-1 text-sm italic text-gray-600">
+        <ul class="mt-1 text-sm italic text-gray-600 list-disc">
           <li>Dimensi gambar yang direkomendasikan 1080 x 1080.</li>
           <li>Ukuran maksimal 2MB tiap gambar.</li>
           <li>Maksimal 5 gambar.</li>
