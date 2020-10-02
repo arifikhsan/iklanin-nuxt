@@ -58,9 +58,15 @@
           <div v-else>
             <nuxt-link
               to="/login"
-              class="ml-8 font-medium text-red-500 transition duration-150 ease-in-out bg-gray-50 focus:text-red-700 hover:text-gray-900 focus:outline-none"
+              class="px-6 py-3 font-medium text-red-500 transition duration-150 ease-in-out bg-white border border-red-500 rounded-md focus:outline-none"
             >
               Login
+            </nuxt-link>
+            <nuxt-link
+              to="/register"
+              class="px-6 py-3 ml-4 font-medium text-white transition duration-150 ease-in-out bg-red-500 rounded-md focus:outline-none"
+            >
+              Register
             </nuxt-link>
           </div>
         </client-only>
@@ -115,7 +121,7 @@
             </div>
             <div class="px-2 pt-2 pb-3">
               <client-only>
-                <div v-if="$auth.loggedIn">
+                <template v-if="$auth.loggedIn">
                   <nuxt-link
                     to="/iklanku/baru"
                     class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:bg-gray-200 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
@@ -134,7 +140,15 @@
                   >
                     Profil
                   </nuxt-link>
-                </div>
+                </template>
+                <template>
+                  <nuxt-link
+                    to="/home"
+                    class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:bg-gray-200 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
+                  >
+                    Listing
+                  </nuxt-link>
+                </template>
               </client-only>
             </div>
             <div>
@@ -149,7 +163,7 @@
                 <nuxt-link
                   v-else
                   to="/login"
-                  class="block w-full px-5 py-3 font-medium text-center text-red-500 transition duration-150 ease-in-out bg-gray-50 hover:bg-gray-100 hover:text-red-700 focus:outline-none focus:bg-gray-100 focus:text-red-700"
+                  class="block w-full px-5 py-3 font-medium text-center text-white transition duration-150 ease-in-out bg-red-600 hover:bg-red-800 hover:text-white focus:outline-none focus:bg-red-700"
                 >
                   Login
                 </nuxt-link>

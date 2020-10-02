@@ -5,7 +5,8 @@
         Detail Profil
       </h3>
       <p class="max-w-2xl mt-1 text-sm text-gray-500">
-        Informasi personal yang akan ditampilkan di setiap iklan.
+        Informasi kontak yang akan ditampilkan di setiap iklan. Pastikan untuk
+        mengisi nomor yang aktif.
       </p>
     </div>
     <div>

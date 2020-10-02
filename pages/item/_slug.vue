@@ -71,7 +71,7 @@
             <p class="mt-2">{{ item.category.name }}</p>
           </div>
           <div class="py-2">
-            <p class="font-semibold text-red-500">Hubungi kontak berikut</p>
+            <p class="font-semibold text-red-500">Hubungi pengiklan</p>
             <div class="mt-2">
               <p>Nama: {{ item.user.name }}</p>
               <p>

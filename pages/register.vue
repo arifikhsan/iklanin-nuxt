@@ -1,33 +1,42 @@
 <template>
-  <div class="max-w-xs mx-auto">
-    <form @submit.prevent="register" class="mt-16">
-      <label class="block">
-        <span class="text-gray-700">Nama</span>
+  <div class="max-w-xs py-12 mx-auto">
+    <form @submit.prevent="register">
+      <div>
+        <span class="text-gray-700"
+          >Nama <span class="text-red-500">*</span></span
+        >
         <input
           type="text"
           v-model="credential.name"
           class="block w-full mt-1 form-input"
           placeholder="Nama lengkap"
+          required
         />
-      </label>
-      <label class="block mt-2">
-        <span class="text-gray-700">Email</span>
+      </div>
+      <div class="mt-2">
+        <span class="text-gray-700"
+          >Email <span class="text-red-500">*</span></span
+        >
         <input
           type="email"
           v-model="credential.email"
           class="block w-full mt-1 form-input"
           placeholder="Email"
+          required
         />
-      </label>
-      <label class="block mt-2">
-        <span class="text-gray-700">Password</span>
+      </div>
+      <div class="mt-2">
+        <span class="text-gray-700"
+          >Password <span class="text-red-500">*</span></span
+        >
         <input
           type="password"
           v-model="credential.password"
           class="block w-full mt-1 form-input"
           placeholder="Password"
+          required
         />
-      </label>
+      </div>
       <div class="mt-4">
         <button
           class="block w-full px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"

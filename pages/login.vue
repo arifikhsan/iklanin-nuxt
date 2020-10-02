@@ -1,24 +1,30 @@
 <template>
-  <div class="max-w-xs mx-auto">
-    <form @submit.prevent="login" class="mt-16">
-      <label class="block">
-        <span class="text-gray-700">Email</span>
+  <div class="max-w-xs py-12 mx-auto">
+    <form @submit.prevent="login">
+      <div>
+        <span class="text-gray-700"
+          >Email <span class="text-red-500">*</span></span
+        >
         <input
           type="email"
           v-model="credential.email"
           class="block w-full mt-1 form-input"
           placeholder="Email"
+          required
         />
-      </label>
-      <label class="block mt-2">
-        <span class="text-gray-700">Password</span>
+      </div>
+      <div class="mt-2">
+        <span class="text-gray-700"
+          >Password <span class="text-red-500">*</span></span
+        >
         <input
           type="password"
           v-model="credential.password"
           class="block w-full mt-1 form-input"
           placeholder="Password"
+          required
         />
-      </label>
+      </div>
       <div class="mt-4">
         <button
           class="block w-full px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
@@ -30,7 +36,7 @@
     </form>
     <div class="mt-4">
       <nuxt-link class="duration-500 hover:text-red-500" to="/register">
-        <a>Belum punya akun?</a>
+        Belum punya akun?
       </nuxt-link>
     </div>
   </div>
