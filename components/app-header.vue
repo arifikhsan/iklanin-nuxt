@@ -48,6 +48,11 @@
               class="inline-block ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
               >Iklanku
             </nuxt-link>
+            <nuxt-link
+              to="/profile"
+              class="inline-block ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
+              >Profil
+            </nuxt-link>
             <button
               @click="logout"
               class="inline-block ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
