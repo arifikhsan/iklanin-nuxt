@@ -74,10 +74,11 @@ export default {
   },
   methods: {
     update() {
-      console.log(this.userDetail)
-
       let req = { ...this.userDetail }
       delete req.id
+      delete req.address
+      delete req.dob
+      delete req.gender
 
       this.$axios
         .put('/v1/user_details', { user_detail: req })
