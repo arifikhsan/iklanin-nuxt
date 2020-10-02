@@ -102,14 +102,16 @@
             </div>
           </div>
           <div class="py-2">
-            <div v-if="!$auth.loggedIn" class="mt-8">
-              <nuxt-link
-                to="/login"
-                class="block px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
-              >
-                Mau buat iklan seperti ini?
-              </nuxt-link>
-            </div>
+            <client-only>
+              <div v-if="!$auth.loggedIn" class="mt-8">
+                <nuxt-link
+                  to="/login"
+                  class="block px-4 py-2 text-center text-white duration-500 bg-red-500 rounded-md hover:bg-red-600"
+                >
+                  Mau buat iklan seperti ini?
+                </nuxt-link>
+              </div>
+            </client-only>
           </div>
         </div>
       </div>

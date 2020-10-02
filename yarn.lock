@@ -1385,18 +1385,6 @@
     consola "^2.11.3"
     http-proxy-middleware "^1.0.4"
 
-"@nuxtjs/pwa@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/pwa/-/pwa-3.0.1.tgz#eead598fa407a3347b4888409918e77e546c44f1"
-  integrity sha512-AkNeuOTHcshX/hNT5pBHUgOaeIfd+pBz9saScYZH0u69c51SxzQe7712Cc51+YTK8OUjVPBOXPr1kUvKggW6hw==
-  dependencies:
-    defu "^3.1.0"
-    execa "^4.0.3"
-    fs-extra "^9.0.1"
-    hasha "^5.2.0"
-    jimp-compact "^0.12.1"
-    workbox-cdn "^5.1.3"
-
 "@nuxtjs/sitemap@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/sitemap/-/sitemap-2.4.0.tgz#6a9fa1c35e161f87375d59949d973568cec40614"
@@ -4932,21 +4920,6 @@ execa@^3.2.0, execa@^3.4.0:
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
 
-execa@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-4.0.3.tgz#0a34dabbad6d66100bd6f2c576c8669403f317f2"
-  integrity sha512-WFDXGHckXPWZX19t1kCsXzOpqX9LWYNqn4C+HqZlk/V0imTkzJZqf87ZBhvpHaftERYknpk0fjSylnXVlVgI0A==
-  dependencies:
-    cross-spawn "^7.0.0"
-    get-stream "^5.0.0"
-    human-signals "^1.1.1"
-    is-stream "^2.0.0"
-    merge-stream "^2.0.0"
-    npm-run-path "^4.0.0"
-    onetime "^5.1.0"
-    signal-exit "^3.0.2"
-    strip-final-newline "^2.0.0"
-
 exit@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/exit/-/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
@@ -5764,14 +5737,6 @@ hash.js@^1.0.0, hash.js@^1.0.3, hash.js@^1.1.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hasha@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/hasha/-/hasha-5.2.0.tgz#33094d1f69c40a4a6ac7be53d5fe3ff95a269e0c"
-  integrity sha512-2W+jKdQbAdSIrggA8Q35Br8qKadTrqCTC8+XZvBWepKDK6m9XkX6Iz1a2yh2KP01kzAR/dpuMeUnocoLYDcskw==
-  dependencies:
-    is-stream "^2.0.0"
-    type-fest "^0.8.0"
-
 he@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
@@ -6518,11 +6483,6 @@ jest-worker@^25.4.0:
   dependencies:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
-
-jimp-compact@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/jimp-compact/-/jimp-compact-0.12.1.tgz#f35ae542f83659f7f1b2fa4f955a27869dbe15ea"
-  integrity sha512-WEIxAvP4t7ZrGTExPx4pWa28/fxP+meQ90JedM2Jtwg/6IK2gVCS24hB5ggOEXsA3cBWQAaCdFgSB8WkMYykHA==
 
 jiti@^0.1.11:
   version "0.1.11"
@@ -7500,13 +7460,6 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
-
-nuxt-webfontloader@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/nuxt-webfontloader/-/nuxt-webfontloader-1.1.0.tgz#68b47ffbeaee4c41969f42f57a86946e0c36715c"
-  integrity sha512-GyDgABmI0Oq54s2tA9SZC28TmHy2xGdWSXrfcGPPfDBVhgQQlGL5CJcAlvovcuhefzzZrzGgs35HIcv5qym4fQ==
-  dependencies:
-    webfontloader "^1.6.28"
 
 nuxt@^2.14.3:
   version "2.14.3"
@@ -10348,7 +10301,7 @@ type-fest@^0.3.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.3.1.tgz#63d00d204e059474fe5e1b7c011112bbd1dc29e1"
   integrity sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ==
 
-type-fest@^0.8.0, type-fest@^0.8.1:
+type-fest@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
@@ -10365,6 +10318,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typeface-metropolis@^0.0.74:
+  version "0.0.74"
+  resolved "https://registry.yarnpkg.com/typeface-metropolis/-/typeface-metropolis-0.0.74.tgz#4201ff1e3b86f55825eed53662c49dff54c461f3"
+  integrity sha512-8qJnWwD5GkFqoNkv0t068jXziJHoIayq7dNl9a0BRy30/VznqmEgrQWkMDG8KxH2hRXXAWZfayXM9L6sZEkaaw==
 
 ua-parser-js@^0.7.21:
   version "0.7.21"
@@ -10849,11 +10807,6 @@ watchpack@^1.7.4:
     chokidar "^3.4.1"
     watchpack-chokidar2 "^2.0.0"
 
-webfontloader@^1.6.28:
-  version "1.6.28"
-  resolved "https://registry.yarnpkg.com/webfontloader/-/webfontloader-1.6.28.tgz#db786129253cb6e8eae54c2fb05f870af6675bae"
-  integrity sha1-23hhKSU8tujq5UwvsF+HCvZnW64=
-
 webpack-bundle-analyzer@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.8.0.tgz#ce6b3f908daf069fd1f7266f692cbb3bded9ba16"
@@ -11010,11 +10963,6 @@ widest-line@^3.1.0:
   integrity sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==
   dependencies:
     string-width "^4.0.0"
-
-workbox-cdn@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/workbox-cdn/-/workbox-cdn-5.1.3.tgz#9904716a54684f146e1f596da7e70f01daede8fe"
-  integrity sha512-eYkQeCO1p/78MkTbV1Ruy7KuHK5vSGtr0igXfzBQFBVRmF7+7GrMSrYiw1Ya91Tb9pjXFYYNZlspBfeWUbLMUw==
 
 worker-farm@^1.7.0:
   version "1.7.0"
