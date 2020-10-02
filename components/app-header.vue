@@ -40,7 +40,7 @@
           <div v-if="$auth.loggedIn">
             <nuxt-link
               to="/iklanku/baru"
-              class="inline-block font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
+              class="inline-block px-3 py-1 font-medium text-white transition duration-150 ease-in-out bg-red-600 rounded-md hover:text-gray-900 focus:outline-none focus:text-gray-900"
               >Buat iklan
             </nuxt-link>
             <nuxt-link
@@ -50,7 +50,7 @@
             </nuxt-link>
             <button
               @click="logout"
-              class="ml-8 font-medium text-red-500 transition duration-150 ease-in-out bg-gray-50 focus:text-red-700 hover:text-gray-900 focus:outline-none"
+              class="inline-block ml-8 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
             >
               Logout
             </button>
@@ -119,12 +119,12 @@
                 </button>
               </div>
             </div>
-            <div class="px-2 pt-2 pb-3">
-              <client-only>
+            <client-only>
+              <div class="px-2 pt-2 pb-3">
                 <template v-if="$auth.loggedIn">
                   <nuxt-link
                     to="/iklanku/baru"
-                    class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:bg-gray-200 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
+                    class="block px-3 py-2 mt-1 text-base font-medium text-red-500 transition duration-150 ease-in-out rounded-md hover:bg-gray-200 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
                   >
                     Buat iklan
                   </nuxt-link>
@@ -149,8 +149,8 @@
                     Listing
                   </nuxt-link>
                 </template>
-              </client-only>
-            </div>
+              </div>
+            </client-only>
             <div>
               <client-only>
                 <button
