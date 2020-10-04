@@ -36,7 +36,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/typeface.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -71,6 +71,7 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+    transpile: ['typeface-inter', 'typeface-metropolis'],
   },
   server: {
     port: 8000,

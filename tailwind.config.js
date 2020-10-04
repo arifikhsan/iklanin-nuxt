@@ -10,7 +10,8 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      body: ['Metropolis'],
+      display: 'Metropolis',
+      body: 'Inter',
     },
     truncate: {
       lines: {
