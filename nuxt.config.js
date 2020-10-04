@@ -36,7 +36,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/typeface.js'],
+  plugins: ['~/plugins/typeface.js', '~/plugins/social-share.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -55,6 +55,7 @@ export default {
     '@nuxtjs/auth',
     '@nuxtjs/toast',
     '@nuxtjs/sitemap',
+    'vue-social-sharing/nuxt',
   ],
   /*
    ** Axios module configuration

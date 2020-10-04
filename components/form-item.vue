@@ -107,7 +107,7 @@
           type="number"
           v-model="item.price"
           class="block mt-1 form-input"
-          placeholder="20000"
+          placeholder="0"
           required
         />
       </div>

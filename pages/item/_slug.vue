@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="py-2 lg:hidden">
-            <p class="font-semibold text-red-500">Deksripsi</p>
+            <p class="font-semibold text-red-500">Deskripsi</p>
             <div class="mt-2">
               <div
                 class="leading-normal prose break-words"
@@ -116,12 +116,29 @@
         </div>
       </div>
       <div class="hidden py-2 lg:block">
-        <p class="font-semibold text-red-500">Deksripsi</p>
+        <p class="font-semibold text-red-500">Deskripsi</p>
         <div class="mt-2">
           <div
             class="leading-normal prose break-words"
             v-html="item.detail"
           ></div>
+        </div>
+      </div>
+      <div class="py-2">
+        <p class="font-semibold text-red-500">Bagikan</p>
+        <div class="flex flex-wrap mt-4">
+          <share-network
+            v-for="network in networks"
+            :network="network.network"
+            :key="network.network"
+            :style="{ backgroundColor: network.color }"
+            :url="fullUrl"
+            :title="item.title"
+            :hashtags="item.category.name"
+            class="px-3 py-1 mb-2 mr-2 text-sm text-white transition duration-500 rounded-md cursor-pointer hover:opacity-75"
+          >
+            {{ network.name }}
+          </share-network>
         </div>
       </div>
     </div>
@@ -197,6 +214,7 @@ export default {
   async asyncData({ $axios, route }) {
     const response = await $axios.$get('/v1/items/' + route.params.slug)
     const coverImage = response.data.images.find((e) => e.cover)
+
     return { item: response.data, coverImage }
   },
   data() {
@@ -207,7 +225,45 @@ export default {
         url: {},
       },
       slideOpen: false,
+      networks: [
+        {
+          network: 'email',
+          name: 'Email',
+          color: '#333333',
+        },
+        {
+          network: 'facebook',
+          name: 'Facebook',
+          color: '#1877f2',
+        },
+        {
+          network: 'linkedin',
+          name: 'LinkedIn',
+          color: '#007bb5',
+        },
+        {
+          network: 'telegram',
+          name: 'Telegram',
+
+          color: '#0088cc',
+        },
+        {
+          network: 'twitter',
+          name: 'Twitter',
+          color: '#1da1f2',
+        },
+        {
+          network: 'whatsapp',
+          name: 'Whatsapp',
+          color: '#25d366',
+        },
+      ],
     }
+  },
+  computed: {
+    fullUrl() {
+      return process.env.FRONTEND_BASE_URL.slice(0, -1) + this.$route.path
+    },
   },
   methods: {
     toggleSlide() {

@@ -42,7 +42,7 @@
           :class="{ 'is-active': isActive.code_block() }"
           @click="commands.code_block"
         >
-          Code
+          Code Block
         </button>
 
         <button
