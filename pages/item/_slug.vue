@@ -262,7 +262,7 @@ export default {
   },
   computed: {
     fullUrl() {
-      return process.env.FRONTEND_BASE_URL.slice(0, -1) + this.$route.path
+      return 'https://www.iklanin.space' + this.$route.path
     },
   },
   methods: {
