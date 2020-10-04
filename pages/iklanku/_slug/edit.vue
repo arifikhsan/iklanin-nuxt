@@ -99,25 +99,13 @@ export default {
         })
       }
 
-      // for (var pair of formData.entries()) {
-      //   console.log(pair[0] + ', ' + pair[1])
-      // }
-
       this.$axios
         .$put('/v1/items/' + this.$route.params.slug, formData)
         .then((res) => {
           this.$toast.success('Sukses mengedit iklan.', {
             duration: 6000,
           })
-          this.slug = res.data.slug
-          this.done = true
-          // this.item = {
-          //   category_id: '',
-          //   title: '',
-          //   detail: '',
-          //   price: null,
-          //   images: [],
-          // }
+          this.$router.push(`/item/${res.data.slug}`)
         })
         .catch((err) => {
           this.$toast.error('Gagal membuat iklan.', {

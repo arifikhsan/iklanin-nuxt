@@ -95,7 +95,7 @@
             </div>
           </div>
         </div>
-        <ul class="mt-1 text-sm italic text-gray-600 list-disc">
+        <ul class="px-4 mt-1 text-sm italic text-gray-600 list-disc">
           <li>Dimensi gambar yang direkomendasikan 1080 x 1080.</li>
           <li>Ukuran maksimal 2MB tiap gambar.</li>
           <li>Maksimal 5 gambar.</li>
@@ -146,14 +146,6 @@
           >
             {{ isEdit ? 'Update' : 'Buat Iklan!' }}
           </button>
-        </div>
-        <div v-if="done">
-          <nuxt-link
-            class="block w-full px-4 py-2 mt-2 text-center text-red-500 duration-500 bg-white border border-red-500 rounded-md hover:bg-red-600 hover:text-white"
-            :to="{ name: 'item-slug', params: { slug: slug } }"
-          >
-            <a>Lihat iklan</a>
-          </nuxt-link>
         </div>
       </div>
     </form>

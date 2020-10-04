@@ -70,15 +70,7 @@ export default {
           this.$toast.success('Sukses membuat iklan.', {
             duration: 6000,
           })
-          this.slug = res.data.slug
-          this.done = true
-          this.item = {
-            category_id: '',
-            title: '',
-            detail: '',
-            price: null,
-            images: [],
-          }
+          this.$router.push(`/item/${res.data.slug}`)
         })
         .catch((err) => {
           this.$toast.error('Gagal membuat iklan.', {
