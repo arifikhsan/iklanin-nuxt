@@ -74,6 +74,7 @@
             <p class="font-semibold text-red-500">Hubungi pengiklan</p>
             <div class="mt-2">
               <p>Nama: {{ item.user.name }}</p>
+              <p>Email: {{ item.user.email }}</p>
               <p>
                 Nomor HP:
                 {{
