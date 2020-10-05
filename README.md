@@ -21,5 +21,4 @@ $ yarn generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
-tes build
 npm i vue-zoom-on-hover
