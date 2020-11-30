@@ -20,7 +20,7 @@ export default {
       {
         hid: 'dicoding:email',
         name: 'dicoding:email',
-        content: 'arif.ikhsanudin.developer@gmail.com',
+        content: 'arif.ikhsanudin.id@gmail.com',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
