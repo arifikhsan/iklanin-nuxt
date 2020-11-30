@@ -2,7 +2,7 @@ import axios from 'axios'
 require('dotenv').config()
 
 export default {
-  mode: 'universal',
+  // mode: 'universal',
   // target: 'static',
   /*
    ** Headers of the page
@@ -54,7 +54,7 @@ export default {
     '@nuxtjs/apollo',
     '@nuxtjs/auth',
     '@nuxtjs/toast',
-    '@nuxtjs/sitemap',
+    // '@nuxtjs/sitemap',
     'vue-social-sharing/nuxt',
   ],
   /*
@@ -103,11 +103,11 @@ export default {
     defaultLocale: 'id',
     locales: ['id'],
   },
-  sitemap: {
-    hostname: process.env.FRONTEND_BASE_URL,
-    routes: async () => {
-      const res = await axios.get(`${process.env.REST_URL}v1/items/sitemap`)
-      return res.data.data.map((item) => `/item/${item.slug}`)
-    },
-  },
+  // sitemap: {
+  //   hostname: process.env.FRONTEND_BASE_URL,
+  //   routes: async () => {
+  //     const res = await axios.get(`${process.env.REST_URL}v1/items/sitemap`)
+  //     return res.data.data.map((item) => `/item/${item.slug}`)
+  //   },
+  // },
 }
